@@ -1,4 +1,4 @@
-import { dehydrate, QueryClient, setLogger } from '@tanstack/react-query';
+import { dehydrate, QueryClient } from '@tanstack/react-query';
 import type { DehydratedState, QueryKey, Logger } from '@tanstack/react-query';
 import { detectFetchMode, type FetchMode } from './detectFetchMode.js';
 
@@ -53,7 +53,14 @@ export async function getHydrationProps({
     return { dehydratedState: null, revalidate };
   }
 
+  const noopLogger: Logger = {
+    log: () => {},
+    warn: () => {},
+    error: () => {},
+  };
+
   const qc = new QueryClient({
+    logger: noopLogger,
     defaultOptions: {
       queries: {
         retry: false,
@@ -62,19 +69,6 @@ export async function getHydrationProps({
       },
     },
   });
-
-  const noopLogger: Logger = {
-    log: () => {},
-    warn: () => {},
-    error: () => {},
-  };
-  const previousLogger: Logger = {
-    log: console.log,
-    warn: console.warn,
-    error: console.error,
-  };
-
-  setLogger(noopLogger);
 
   const seen = new Set<string>();
 
@@ -106,11 +100,14 @@ export async function getHydrationProps({
       },
     });
 
-    const sizeKB = Math.round(byteSize(dehydrated) / 1024);
-    const dehydratedState = sizeKB > maxPayloadKB ? null : dehydrated;
+    const payloadBytes = byteSize(dehydrated);
+    const payloadKB = payloadBytes / 1024;
+    const hasHydratableQueries = dehydrated.queries.length > 0;
+    const dehydratedState =
+      !hasHydratableQueries || payloadKB > maxPayloadKB ? null : dehydrated;
 
     if (devLog) {
-      const modeInfo = `[hydrate] mode=${fetchMode} queries=${tasks.length} payload=${sizeKB}KB`;
+      const modeInfo = `[hydrate] mode=${fetchMode} queries=${tasks.length} payload=${Math.round(payloadKB)}KB`;
       // eslint-disable-next-line no-console
       console.log(modeInfo + (dehydratedState ? '' : ' (CSR fallback)'));
     }
@@ -121,6 +118,5 @@ export async function getHydrationProps({
     };
   } finally {
     qc.clear();
-    setLogger(previousLogger);
   }
 }
