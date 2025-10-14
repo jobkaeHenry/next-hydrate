@@ -1,23 +1,33 @@
-import { dehydrate, QueryClient } from '@tanstack/react-query';
-import type { DehydratedState, QueryKey, Logger } from '@tanstack/react-query';
-import { detectFetchMode, type FetchMode } from './detectFetchMode.js';
+import { dehydrate, QueryClient } from "@tanstack/react-query";
+import type { DehydratedState, QueryKey } from "@tanstack/react-query";
+import { detectFetchMode, type FetchMode } from "./detectFetchMode.js";
 
-async function runWithConcurrency(tasks: (() => Promise<void>)[], limit: number) {
+async function runWithConcurrency(
+  tasks: (() => Promise<void>)[],
+  limit: number
+) {
   if (tasks.length === 0) return;
 
   const queue = [...tasks];
-  const workers = Array.from({ length: Math.min(Math.max(1, limit), tasks.length) }, async () => {
-    while (queue.length) {
-      const task = queue.shift();
-      if (!task) break;
-      await task();
+  const workers = Array.from(
+    { length: Math.min(Math.max(1, limit), tasks.length) },
+    async () => {
+      while (queue.length) {
+        const task = queue.shift();
+        if (!task) break;
+        await task();
+      }
     }
-  });
+  );
 
   await Promise.all(workers);
 }
 
-const byteSize = (obj: unknown) => new TextEncoder().encode(JSON.stringify(obj)).length;
+const byteSize = (obj: unknown): number => {
+  // Use more efficient byte size calculation
+  const str = JSON.stringify(obj);
+  return new TextEncoder().encode(str).length;
+};
 
 export type QueryConfig<TData> = {
   key: QueryKey;
@@ -27,8 +37,8 @@ export type QueryConfig<TData> = {
   shouldDehydrate?: (data: TData) => boolean;
 };
 
-export interface HydrationOptions {
-  queries: QueryConfig<any>[];
+export interface HydrationOptions<TData = any> {
+  queries: QueryConfig<TData>[];
   fetchMode?: FetchMode;
   revalidate?: number;
   concurrency?: number;
@@ -41,26 +51,20 @@ export interface HydrationProps {
   revalidate?: number;
 }
 
-export async function getHydrationProps({
+export async function getHydrationProps<TData = any>({
   queries,
-  fetchMode = detectFetchMode(),
+  fetchMode = "ssr",
   revalidate,
   concurrency = 6,
   maxPayloadKB = 200,
-  devLog = process.env.NODE_ENV !== 'production',
-}: HydrationOptions): Promise<HydrationProps> {
-  if (fetchMode === 'csr' || !queries.some((q) => q.hydrate !== false)) {
+  devLog = process.env.NODE_ENV !== "production",
+}: HydrationOptions<TData>): Promise<HydrationProps> {
+  fetchMode = await detectFetchMode();
+  if (fetchMode === "csr" || !queries.some((q) => q.hydrate !== false)) {
     return { dehydratedState: null, revalidate };
   }
 
-  const noopLogger: Logger = {
-    log: () => {},
-    warn: () => {},
-    error: () => {},
-  };
-
   const qc = new QueryClient({
-    logger: noopLogger,
     defaultOptions: {
       queries: {
         retry: false,
@@ -82,20 +86,30 @@ export async function getHydrationProps({
       return async () => {
         const pages = Math.max(1, query.pagesToHydrate ?? 1);
         for (let i = 0; i < pages; i += 1) {
-          await qc.prefetchQuery({ queryKey: query.key, queryFn: query.fetchFn });
+          await qc.prefetchQuery({
+            queryKey: query.key,
+            queryFn: query.fetchFn,
+          });
         }
       };
     })
     .filter(Boolean) as (() => Promise<void>)[];
+
+  // Create a map for faster query lookup
+  const queryMap = new Map<string, QueryConfig<TData>>();
+  queries.forEach(query => {
+    queryMap.set(JSON.stringify(query.key), query);
+  });
 
   try {
     await runWithConcurrency(tasks, concurrency);
 
     const dehydrated = dehydrate(qc, {
       shouldDehydrateQuery: (query) => {
-        if (query.state.status !== 'success') return false;
-        const data = query.state.data as unknown;
-        const config = queries.find((item) => JSON.stringify(item.key) === JSON.stringify(query.queryKey));
+        if (query.state.status !== "success") return false;
+        const data = query.state.data as TData;
+        const keyStr = JSON.stringify(query.queryKey);
+        const config = queryMap.get(keyStr);
         return config?.shouldDehydrate ? config.shouldDehydrate(data) : true;
       },
     });
@@ -109,14 +123,15 @@ export async function getHydrationProps({
     if (devLog) {
       const modeInfo = `[hydrate] mode=${fetchMode} queries=${tasks.length} payload=${Math.round(payloadKB)}KB`;
       // eslint-disable-next-line no-console
-      console.log(modeInfo + (dehydratedState ? '' : ' (CSR fallback)'));
+      console.log(modeInfo + (dehydratedState ? "" : " (CSR fallback)"));
     }
 
     return {
       dehydratedState,
-      revalidate: fetchMode === 'isr' ? revalidate ?? 60 : undefined,
+      revalidate: fetchMode === "isr" ? revalidate ?? 60 : undefined,
     };
   } finally {
+    // Ensure cleanup happens even if errors occur
     qc.clear();
   }
 }

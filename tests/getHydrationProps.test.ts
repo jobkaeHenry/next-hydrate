@@ -4,10 +4,24 @@ import { getHydrationProps } from '../src/getHydrationProps.js';
 
 const flushMicrotasks = () => new Promise((resolve) => setTimeout(resolve, 0));
 
+// Define types for test data
+type TestData = { message: string };
+type SecretData = { secret: boolean };
+type BigData = number[];
+type RandomData = { value: number };
+
+// Mock detectFetchMode to avoid calling headers() outside request scope
+vi.mock('../src/detectFetchMode.js', () => ({
+  detectFetchMode: vi.fn(),
+}));
+
 describe('getHydrationProps', () => {
   it('skips hydration on csr mode', async () => {
-    const fetchFn = vi.fn(async () => ({ message: 'hello' }));
-    const result = await getHydrationProps({
+    const { detectFetchMode } = await import('../src/detectFetchMode.js');
+    vi.mocked(detectFetchMode).mockResolvedValue('csr');
+
+    const fetchFn = vi.fn(async (): Promise<TestData> => ({ message: 'hello' }));
+    const result = await getHydrationProps<TestData>({
       fetchMode: 'csr',
       queries: [{ key: ['csr'], fetchFn }],
     });
@@ -17,9 +31,12 @@ describe('getHydrationProps', () => {
   });
 
   it('hydrates queries on ssr', async () => {
-    const fetchFn = vi.fn(async () => ({ message: 'hello' }));
+    const { detectFetchMode } = await import('../src/detectFetchMode.js');
+    vi.mocked(detectFetchMode).mockResolvedValue('ssr');
 
-    const result = await getHydrationProps({
+    const fetchFn = vi.fn(async (): Promise<TestData> => ({ message: 'hello' }));
+
+    const result = await getHydrationProps<TestData>({
       fetchMode: 'ssr',
       queries: [{ key: ['greeting'], fetchFn }],
       devLog: false,
@@ -36,15 +53,18 @@ describe('getHydrationProps', () => {
   });
 
   it('respects shouldDehydrate filter', async () => {
-    const fetchFn = vi.fn(async () => ({ secret: true }));
+    const { detectFetchMode } = await import('../src/detectFetchMode.js');
+    vi.mocked(detectFetchMode).mockResolvedValue('ssr');
 
-    const result = await getHydrationProps({
+    const fetchFn = vi.fn(async (): Promise<SecretData> => ({ secret: true }));
+
+    const result = await getHydrationProps<SecretData>({
       fetchMode: 'ssr',
       queries: [
         {
           key: ['secret'],
           fetchFn,
-          shouldDehydrate: () => false,
+          shouldDehydrate: (data: SecretData) => false,
         },
       ],
       devLog: false,
@@ -54,9 +74,12 @@ describe('getHydrationProps', () => {
   });
 
   it('falls back to csr when payload exceeds max size', async () => {
-    const fetchFn = vi.fn(async () => Array.from({ length: 2000 }, (_, i) => i));
+    const { detectFetchMode } = await import('../src/detectFetchMode.js');
+    vi.mocked(detectFetchMode).mockResolvedValue('ssr');
 
-    const result = await getHydrationProps({
+    const fetchFn = vi.fn(async (): Promise<BigData> => Array.from({ length: 2000 }, (_, i) => i));
+
+    const result = await getHydrationProps<BigData>({
       fetchMode: 'ssr',
       queries: [{ key: ['big'], fetchFn }],
       maxPayloadKB: 1,
@@ -67,9 +90,12 @@ describe('getHydrationProps', () => {
   });
 
   it('prefetches unique queries only once', async () => {
-    const fetchFn = vi.fn(async () => ({ value: Math.random() }));
+    const { detectFetchMode } = await import('../src/detectFetchMode.js');
+    vi.mocked(detectFetchMode).mockResolvedValue('ssr');
 
-    const result = await getHydrationProps({
+    const fetchFn = vi.fn(async (): Promise<RandomData> => ({ value: Math.random() }));
+
+    const result = await getHydrationProps<RandomData>({
       fetchMode: 'ssr',
       queries: [
         { key: ['dup'], fetchFn },

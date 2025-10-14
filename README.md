@@ -75,7 +75,7 @@ When you render a server component, call `getHydrationProps` with a list of quer
 
 ```tsx
 // app/posts/page.tsx
-import { getHydrationProps, makeJsonFetch } from '@jobkaehenry/next-hydrate';
+import { getHydrationProps } from '@jobkaehenry/next-hydrate';
 import PostsClient from './PostsClient';
 
 export default async function PostsPage() {
@@ -83,14 +83,21 @@ export default async function PostsPage() {
     queries: [
       {
         key: ['posts'],
-        fetchFn: makeJsonFetch(`${process.env.API_URL}/api/posts`, {
-          revalidate: 60,
-          tags: ['posts'],
-        }),
+        fetchFn: async () => {
+          const res = await fetch(`${process.env.API_URL}/api/posts`, {
+            next: { revalidate: 60, tags: ['posts'] }
+          });
+          if (!res.ok) throw new Error('Failed to fetch posts');
+          return res.json();
+        },
       },
       {
         key: ['tags'],
-        fetchFn: makeJsonFetch(`${process.env.API_URL}/api/tags`),
+        fetchFn: async () => {
+          const res = await fetch(`${process.env.API_URL}/api/tags`);
+          if (!res.ok) throw new Error('Failed to fetch tags');
+          return res.json();
+        },
       },
     ],
   });
@@ -200,10 +207,6 @@ Higher-order component that injects `dehydratedState` and renders a `<HydrateCli
 
 Client provider exposing a singleton `QueryClient`. Mount it once inside the root layout. In non-production environments the React Query Devtools remain available (collapsed by default).
 
-#### `makeJsonFetch(url, options)`
-
-Returns a memoizable fetcher tailored for React Query. The helper passes through `RequestInit` options and wires `next: { revalidate, tags }` to integrate with Next.js caching. The helper throws on non-2xx responses, allowing React Query to surface errors through its retry logic.
-
 ### 5. Patterns and recipes
 
 - **Multiple route segments**: Share a single `QueryProvider` across layouts. Each route segment can independently call `getHydrationProps` without clobbering caches because React Query scopes cache keys per route tree.
@@ -232,12 +235,6 @@ The package targets v5 APIs. While many behaviours remain compatible with v4, fu
 <summary>Can I use custom fetchers instead of <code>makeJsonFetch</code>?</summary>
 
 Absolutely. Any async function returning data works. `makeJsonFetch` simply reduces boilerplate for JSON endpoints while wiring Next.js caching hints.
-</details>
-
-<details>
-<summary>Is Suspense required?</summary>
-
-No. The default `QueryClient` enables Suspense, but you can override the configuration in your own provider if you prefer callbacks or `isLoading` flags.
 </details>
 
 <details>
@@ -340,7 +337,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 ```tsx
 // app/posts/page.tsx
-import { getHydrationProps, makeJsonFetch } from '@jobkaehenry/next-hydrate';
+import { getHydrationProps } from '@jobkaehenry/next-hydrate';
 import PostsClient from './PostsClient';
 
 export default async function PostsPage() {
@@ -348,14 +345,21 @@ export default async function PostsPage() {
     queries: [
       {
         key: ['posts'],
-        fetchFn: makeJsonFetch(`${process.env.API_URL}/api/posts`, {
-          revalidate: 60,
-          tags: ['posts'],
-        }),
+        fetchFn: async () => {
+          const res = await fetch(`${process.env.API_URL}/api/posts`, {
+            next: { revalidate: 60, tags: ['posts'] }
+          });
+          if (!res.ok) throw new Error('Failed to fetch posts');
+          return res.json();
+        },
       },
       {
         key: ['tags'],
-        fetchFn: makeJsonFetch(`${process.env.API_URL}/api/tags`),
+        fetchFn: async () => {
+          const res = await fetch(`${process.env.API_URL}/api/tags`);
+          if (!res.ok) throw new Error('Failed to fetch tags');
+          return res.json();
+        },
       },
     ],
   });
@@ -465,10 +469,6 @@ export default function PostsClient({ dehydratedState }: { dehydratedState: unkn
 
 루트 레이아웃에 한 번만 마운트하는 클라이언트 Provider입니다. 개발 환경에서는 React Query Devtools가 함께 표시됩니다(기본은 접힘 상태).
 
-#### `makeJsonFetch(url, options)`
-
-React Query에서 재사용 가능한 fetcher를 반환합니다. `RequestInit` 옵션을 그대로 전달하며, `next: { revalidate, tags }`를 자동으로 구성해 Next.js 캐싱 시스템과 연동합니다. 2xx가 아닌 응답은 오류를 던져 React Query의 재시도 로직이 작동하도록 합니다.
-
 ### 5. 패턴과 레시피
 
 - **여러 라우트 세그먼트**: 하나의 `QueryProvider`를 공유하면서 각 세그먼트에서 독립적으로 `getHydrationProps`를 호출해도 캐시 키가 겹치지 않습니다.
@@ -497,12 +497,6 @@ React Query에서 재사용 가능한 fetcher를 반환합니다. `RequestInit` 
 <summary><code>makeJsonFetch</code> 대신 직접 fetch 함수를 써도 되나요?</summary>
 
 가능합니다. 비동기 데이터만 반환하면 됩니다. `makeJsonFetch`는 JSON API에서 Next.js 캐싱 옵션을 함께 전달하기 위한 헬퍼일 뿐입니다.
-</details>
-
-<details>
-<summary>Suspense 사용이 필수인가요?</summary>
-
-필수는 아닙니다. 기본 `QueryClient`가 Suspense를 활성화하지만, 필요하다면 사용자 정의 Provider를 만들어 설정을 변경할 수 있습니다.
 </details>
 
 <details>

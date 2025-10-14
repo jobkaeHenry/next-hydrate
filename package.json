@@ -13,9 +13,11 @@
       "types": "./dist/index.d.ts"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "tsup src/index.ts --dts --format esm,cjs",
+    "build": "tsup src/index.ts --dts --format esm,cjs --treeshake --minify",
     "clean": "rm -rf dist",
     "test": "vitest run",
     "dev:test": "vitest",
@@ -23,7 +25,9 @@
   },
   "keywords": [
     "nextjs",
+    "approuter",
     "react-query",
+    "tanstack-query",
     "hydration",
     "ssr",
     "isr",
@@ -42,8 +46,9 @@
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
-    "@types/react": "^18.2.0",
+    "@types/react": "^18.3.26",
     "@vitest/coverage-v8": "^1.6.0",
+    "jsdom": "^27.0.0",
     "tsup": "^7.2.0",
     "typescript": "^5.3.0",
     "vitest": "^1.6.0"
