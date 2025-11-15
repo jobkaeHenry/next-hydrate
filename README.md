@@ -2,6 +2,10 @@
 
 > Universal hydration utilities for Next.js App Router + React Query v5.
 
+[![npm version](https://img.shields.io/npm/v/@jobkaehenry/next-hydrate)](https://www.npmjs.com/package/@jobkaehenry/next-hydrate)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.3+-blue.svg)](https://www.typescriptlang.org/)
+
 ## 🌐 Language / 언어 선택
 
 <details open>

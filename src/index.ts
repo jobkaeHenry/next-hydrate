@@ -5,3 +5,5 @@ export * from './HydrateClient.js';
 export * from './withHydration.js';
 export * from './providers/QueryProvider.js';
 export * from './types.js';
+export * from './utils/helpers.js';
+export * from './utils/logger.js';

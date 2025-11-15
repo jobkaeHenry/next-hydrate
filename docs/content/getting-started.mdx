@@ -1,0 +1,46 @@
+---
+title: "Getting Started"
+slug: "/docs/getting-started"
+description: "Learn how to get started with next-hydrate"
+---
+
+## Introduction
+
+`next-hydrate` is a powerful library that provides universal hydration utilities for Next.js App Router applications using React Query v5. It automatically handles the complexity of server-side rendering, incremental static regeneration, static site generation, and client-side rendering.
+
+## Why next-hydrate?
+
+Managing React Query state across different Next.js rendering strategies can be challenging. `next-hydrate` solves this by:
+
+- **Automatic Detection**: Automatically detects whether you're in SSR, ISR, SSG, or CSR mode
+- **Performance Optimized**: Built-in concurrency control, payload size limits, and memory optimization
+- **Type-Safe**: Full TypeScript support with comprehensive type definitions
+- **Developer Friendly**: Simple API with powerful features and integrated logging
+
+## Key Features
+
+### Universal Rendering Support
+
+Works seamlessly across all Next.js rendering modes:
+- **SSR** (Server-Side Rendering)
+- **ISR** (Incremental Static Regeneration)
+- **SSG** (Static Site Generation)
+- **CSR** (Client-Side Rendering)
+
+### Performance First
+
+- Concurrency control for parallel fetches
+- Payload size monitoring with automatic CSR fallback
+- Memory-efficient server-side QueryClient
+- Query deduplication
+
+### Developer Experience
+
+- TypeScript-first with excellent IDE support
+- Integrated logging and debugging
+- React Query DevTools support
+- Comprehensive error handling
+
+## Next Steps
+
+Ready to get started? Check out the [Installation](/docs/installation) guide or jump straight to the [Quick Start](/docs/quick-start) tutorial.
