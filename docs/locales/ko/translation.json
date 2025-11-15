@@ -1,0 +1,54 @@
+{
+  "site": {
+    "title": "next-hydrate",
+    "subtitle": "Next.js App Router와 React Query v5를 위한 범용 하이드레이션 유틸리티",
+    "description": "Next.js App Router와 React Query v5를 위한 범용 하이드레이션 유틸리티"
+  },
+  "nav": {
+    "docs": "문서",
+    "api": "API",
+    "examples": "예제",
+    "github": "GitHub"
+  },
+  "hero": {
+    "title": "next-hydrate",
+    "subtitle": "Next.js App Router와 React Query v5를 위한 범용 하이드레이션 유틸리티",
+    "getStarted": "시작하기",
+    "viewOnGithub": "GitHub에서 보기"
+  },
+  "features": {
+    "universal": {
+      "title": "🚀 범용 지원",
+      "description": "SSR, ISR, SSG, CSR과 완벽하게 작동합니다. 렌더링 모드를 자동으로 감지하고 하이드레이션을 최적화합니다."
+    },
+    "performance": {
+      "title": "⚡ 성능 우선",
+      "description": "서버와 클라이언트 환경 모두를 위한 동시성 제어, 페이로드 크기 제한, 메모리 최적화가 내장되어 있습니다."
+    },
+    "typeSafe": {
+      "title": "🎯 타입 안전",
+      "description": "포괄적인 타입 정의와 뛰어난 IDE 자동완성 경험을 제공하는 완전한 TypeScript 지원."
+    },
+    "devFriendly": {
+      "title": "🛠️ 개발자 친화적",
+      "description": "강력한 기능을 갖춘 간단한 API. 로깅, 에러 핸들링, React Query DevTools 지원 통합."
+    },
+    "zeroConfig": {
+      "title": "📦 제로 설정",
+      "description": "합리적인 기본값으로 즉시 작동합니다. 필요한 것만 커스터마이즈하세요."
+    },
+    "smartHydration": {
+      "title": "🔄 스마트 하이드레이션",
+      "description": "자동 중복 제거, 선택적 하이드레이션, 큰 페이로드에 대한 CSR 폴백."
+    }
+  },
+  "quickStart": {
+    "title": "빠른 시작",
+    "install": "npm install @jobkaehenry/next-hydrate @tanstack/react-query",
+    "learnMore": "더 알아보기 →"
+  },
+  "footer": {
+    "copyright": "next-hydrate. MIT 라이선스.",
+    "builtWith": "❤️로 만든 개발자:"
+  }
+}

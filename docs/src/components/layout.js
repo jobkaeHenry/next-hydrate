@@ -1,29 +1,33 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
+import LanguageSwitcher from './LanguageSwitcher'
 import '../styles/layout.css'
 
 const Layout = ({ children }) => {
+  const { t } = useTranslation()
+
   return (
     <div className="site-wrapper">
       <header className="site-header">
         <nav className="nav-container">
           <Link to="/" className="logo">
-            next-hydrate
+            {t('site.title')}
           </Link>
           <ul className="nav-menu">
             <li>
               <Link to="/docs/getting-started" activeClassName="active">
-                Docs
+                {t('nav.docs')}
               </Link>
             </li>
             <li>
               <Link to="/docs/api" activeClassName="active">
-                API
+                {t('nav.api')}
               </Link>
             </li>
             <li>
               <Link to="/docs/examples" activeClassName="active">
-                Examples
+                {t('nav.examples')}
               </Link>
             </li>
             <li>
@@ -32,8 +36,11 @@ const Layout = ({ children }) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                GitHub
+                {t('nav.github')}
               </a>
+            </li>
+            <li>
+              <LanguageSwitcher />
             </li>
           </ul>
         </nav>
@@ -43,10 +50,10 @@ const Layout = ({ children }) => {
 
       <footer className="site-footer">
         <p>
-          © {new Date().getFullYear()} next-hydrate. MIT License.
+          © {new Date().getFullYear()} {t('footer.copyright')}
         </p>
         <p>
-          Built with ❤️ by{' '}
+          {t('footer.builtWith')}{' '}
           <a
             href="https://github.com/jobkaeHenry"
             target="_blank"

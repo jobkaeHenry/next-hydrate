@@ -1,0 +1,54 @@
+{
+  "site": {
+    "title": "next-hydrate",
+    "subtitle": "Utilitaires d'hydratation universels pour Next.js App Router et React Query v5",
+    "description": "Utilitaires d'hydratation universels pour Next.js App Router et React Query v5"
+  },
+  "nav": {
+    "docs": "Documentation",
+    "api": "API",
+    "examples": "Exemples",
+    "github": "GitHub"
+  },
+  "hero": {
+    "title": "next-hydrate",
+    "subtitle": "Utilitaires d'hydratation universels pour Next.js App Router et React Query v5",
+    "getStarted": "Commencer",
+    "viewOnGithub": "Voir sur GitHub"
+  },
+  "features": {
+    "universal": {
+      "title": "🚀 Support Universel",
+      "description": "Fonctionne parfaitement avec SSR, ISR, SSG et CSR. Détecte automatiquement le mode de rendu et optimise l'hydratation en conséquence."
+    },
+    "performance": {
+      "title": "⚡ Performance d'abord",
+      "description": "Contrôle de concurrence intégré, limites de taille de charge utile et optimisation de la mémoire pour les environnements serveur et client."
+    },
+    "typeSafe": {
+      "title": "🎯 Sûreté des Types",
+      "description": "Support TypeScript complet avec des définitions de types complètes et une excellente expérience d'auto-complétion IDE."
+    },
+    "devFriendly": {
+      "title": "🛠️ Convivial pour les Développeurs",
+      "description": "API simple avec des fonctionnalités puissantes. Journalisation intégrée, gestion des erreurs et support des React Query DevTools."
+    },
+    "zeroConfig": {
+      "title": "📦 Zéro Configuration",
+      "description": "Fonctionne dès le départ avec des valeurs par défaut sensées. Personnalisez uniquement ce dont vous avez besoin."
+    },
+    "smartHydration": {
+      "title": "🔄 Hydratation Intelligente",
+      "description": "Déduplication automatique, hydratation sélective et basculement CSR pour les grandes charges utiles."
+    }
+  },
+  "quickStart": {
+    "title": "Démarrage Rapide",
+    "install": "npm install @jobkaehenry/next-hydrate @tanstack/react-query",
+    "learnMore": "En savoir plus →"
+  },
+  "footer": {
+    "copyright": "next-hydrate. Licence MIT.",
+    "builtWith": "Créé avec ❤️ par"
+  }
+}

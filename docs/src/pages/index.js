@@ -1,19 +1,22 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { graphql } from 'gatsby'
+import { Link, useTranslation } from 'gatsby-plugin-react-i18next'
 import Layout from '../components/layout'
 import '../styles/global.css'
 
 const IndexPage = () => {
+  const { t } = useTranslation()
+
   return (
     <Layout>
       <div className="hero">
-        <h1 className="hero-title">next-hydrate</h1>
+        <h1 className="hero-title">{t('hero.title')}</h1>
         <p className="hero-subtitle">
-          Universal hydration utilities for Next.js App Router + React Query v5
+          {t('hero.subtitle')}
         </p>
         <div className="hero-cta">
           <Link to="/docs/getting-started" className="btn btn-primary">
-            Get Started
+            {t('hero.getStarted')}
           </Link>
           <a
             href="https://github.com/jobkaeHenry/next-hydrate"
@@ -21,68 +24,50 @@ const IndexPage = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            View on GitHub
+            {t('hero.viewOnGithub')}
           </a>
         </div>
       </div>
 
       <div className="features">
         <div className="feature-card">
-          <h3>🚀 Universal Support</h3>
-          <p>
-            Works seamlessly with SSR, ISR, SSG, and CSR. Automatically detects
-            the rendering mode and optimizes hydration accordingly.
-          </p>
+          <h3>{t('features.universal.title')}</h3>
+          <p>{t('features.universal.description')}</p>
         </div>
 
         <div className="feature-card">
-          <h3>⚡ Performance First</h3>
-          <p>
-            Built-in concurrency control, payload size limits, and memory
-            optimization for both server and client environments.
-          </p>
+          <h3>{t('features.performance.title')}</h3>
+          <p>{t('features.performance.description')}</p>
         </div>
 
         <div className="feature-card">
-          <h3>🎯 Type-Safe</h3>
-          <p>
-            Full TypeScript support with comprehensive type definitions and
-            excellent IDE autocomplete experience.
-          </p>
+          <h3>{t('features.typeSafe.title')}</h3>
+          <p>{t('features.typeSafe.description')}</p>
         </div>
 
         <div className="feature-card">
-          <h3>🛠️ Developer Friendly</h3>
-          <p>
-            Simple API with powerful features. Integrated logging, error
-            handling, and React Query DevTools support.
-          </p>
+          <h3>{t('features.devFriendly.title')}</h3>
+          <p>{t('features.devFriendly.description')}</p>
         </div>
 
         <div className="feature-card">
-          <h3>📦 Zero Configuration</h3>
-          <p>
-            Works out of the box with sensible defaults. Customize only what you
-            need.
-          </p>
+          <h3>{t('features.zeroConfig.title')}</h3>
+          <p>{t('features.zeroConfig.description')}</p>
         </div>
 
         <div className="feature-card">
-          <h3>🔄 Smart Hydration</h3>
-          <p>
-            Automatic deduplication, selective hydration, and CSR fallback for
-            large payloads.
-          </p>
+          <h3>{t('features.smartHydration.title')}</h3>
+          <p>{t('features.smartHydration.description')}</p>
         </div>
       </div>
 
       <div className="quick-start">
-        <h2>Quick Start</h2>
+        <h2>{t('quickStart.title')}</h2>
         <pre>
-          <code>{`npm install @jobkaehenry/next-hydrate @tanstack/react-query`}</code>
+          <code>{t('quickStart.install')}</code>
         </pre>
         <Link to="/docs/installation" className="learn-more">
-          Learn more →
+          {t('quickStart.learnMore')}
         </Link>
       </div>
     </Layout>
@@ -90,3 +75,17 @@ const IndexPage = () => {
 }
 
 export default IndexPage
+
+export const query = graphql`
+  query($language: String!) {
+    locales: allLocale(filter: {language: {eq: $language}}) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+  }
+`

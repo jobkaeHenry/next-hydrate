@@ -4,6 +4,10 @@ module.exports = {
     description: `Universal hydration utilities for Next.js App Router + React Query v5`,
     author: `@jobkaehenry`,
     siteUrl: `https://next-hydrate.dev`,
+    languages: {
+      langs: ['en', 'ko', 'zh', 'ja', 'fr', 'es', 'ar', 'hi'],
+      defaultLangKey: 'en'
+    }
   },
   plugins: [
     {
@@ -16,8 +20,31 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `locales`,
+        path: `${__dirname}/locales`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-react-i18next`,
+      options: {
+        localeJsonSourceName: `locales`,
+        languages: ['en', 'ko', 'zh', 'ja', 'fr', 'es', 'ar', 'hi'],
+        defaultLanguage: `en`,
+        siteUrl: `https://next-hydrate.dev`,
+        i18nextOptions: {
+          interpolation: {
+            escapeValue: false,
+          },
+          keySeparator: false,
+          nsSeparator: false,
+        },
       },
     },
     {

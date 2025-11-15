@@ -1,0 +1,31 @@
+{
+  "docs": {
+    "gettingStarted": {
+      "title": "शुरू करना",
+      "intro": "परिचय",
+      "why": "next-hydrate क्यों?",
+      "keyFeatures": "मुख्य विशेषताएं",
+      "universalRendering": "सार्वभौमिक रेंडरिंग समर्थन",
+      "performanceFirst": "प्रदर्शन प्राथमिकता",
+      "developerExperience": "डेवलपर अनुभव",
+      "nextSteps": "अगले कदम"
+    },
+    "installation": {
+      "title": "इंस्टॉलेशन",
+      "prerequisites": "पूर्व आवश्यकताएं",
+      "packageInstallation": "पैकेज इंस्टॉलेशन",
+      "peerDependencies": "पीयर निर्भरताएं",
+      "verifyInstallation": "इंस्टॉलेशन सत्यापित करें",
+      "nextSteps": "अगले कदम"
+    },
+    "quickStart": {
+      "title": "त्वरित शुरुआत",
+      "step1": "चरण 1: Query Provider सेटअप करें",
+      "step2": "चरण 2: सर्वर-साइड डेटा फेचिंग",
+      "step3": "चरण 3: क्लाइंट कंपोनेंट",
+      "alternative": "विकल्प: HydrateClient का उपयोग करना",
+      "thatsIt": "बस इतना ही!",
+      "whatNext": "अब क्या?"
+    }
+  }
+}

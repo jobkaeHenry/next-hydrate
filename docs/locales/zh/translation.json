@@ -1,0 +1,54 @@
+{
+  "site": {
+    "title": "next-hydrate",
+    "subtitle": "Next.js App Router 和 React Query v5 的通用水合工具",
+    "description": "Next.js App Router 和 React Query v5 的通用水合工具"
+  },
+  "nav": {
+    "docs": "文档",
+    "api": "API",
+    "examples": "示例",
+    "github": "GitHub"
+  },
+  "hero": {
+    "title": "next-hydrate",
+    "subtitle": "Next.js App Router 和 React Query v5 的通用水合工具",
+    "getStarted": "开始使用",
+    "viewOnGithub": "在 GitHub 上查看"
+  },
+  "features": {
+    "universal": {
+      "title": "🚀 通用支持",
+      "description": "与 SSR、ISR、SSG 和 CSR 无缝配合。自动检测渲染模式并优化水合过程。"
+    },
+    "performance": {
+      "title": "⚡ 性能优先",
+      "description": "内置并发控制、负载大小限制和服务器与客户端环境的内存优化。"
+    },
+    "typeSafe": {
+      "title": "🎯 类型安全",
+      "description": "完整的 TypeScript 支持，具有全面的类型定义和出色的 IDE 自动完成体验。"
+    },
+    "devFriendly": {
+      "title": "🛠️ 开发者友好",
+      "description": "功能强大的简单 API。集成日志记录、错误处理和 React Query DevTools 支持。"
+    },
+    "zeroConfig": {
+      "title": "📦 零配置",
+      "description": "开箱即用，具有合理的默认值。只需自定义您需要的内容。"
+    },
+    "smartHydration": {
+      "title": "🔄 智能水合",
+      "description": "自动去重、选择性水合和大负载的 CSR 回退。"
+    }
+  },
+  "quickStart": {
+    "title": "快速开始",
+    "install": "npm install @jobkaehenry/next-hydrate @tanstack/react-query",
+    "learnMore": "了解更多 →"
+  },
+  "footer": {
+    "copyright": "next-hydrate. MIT 许可证.",
+    "builtWith": "用 ❤️ 构建，作者："
+  }
+}

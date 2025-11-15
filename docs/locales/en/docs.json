@@ -1,0 +1,31 @@
+{
+  "docs": {
+    "gettingStarted": {
+      "title": "Getting Started",
+      "intro": "Introduction",
+      "why": "Why next-hydrate?",
+      "keyFeatures": "Key Features",
+      "universalRendering": "Universal Rendering Support",
+      "performanceFirst": "Performance First",
+      "developerExperience": "Developer Experience",
+      "nextSteps": "Next Steps"
+    },
+    "installation": {
+      "title": "Installation",
+      "prerequisites": "Prerequisites",
+      "packageInstallation": "Package Installation",
+      "peerDependencies": "Peer Dependencies",
+      "verifyInstallation": "Verify Installation",
+      "nextSteps": "Next Steps"
+    },
+    "quickStart": {
+      "title": "Quick Start",
+      "step1": "Step 1: Setup Query Provider",
+      "step2": "Step 2: Server-Side Data Fetching",
+      "step3": "Step 3: Client Component",
+      "alternative": "Alternative: Using HydrateClient",
+      "thatsIt": "That's It!",
+      "whatNext": "What's Next?"
+    }
+  }
+}
