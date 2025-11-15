@@ -7,8 +7,15 @@ import '../styles/global.css'
 const IndexPage = () => {
   const { t } = useTranslation()
 
+  const seo = {
+    title: 'next-hydrate - Universal Hydration for Next.js App Router',
+    description: 'Universal hydration utilities for Next.js App Router + React Query v5. Seamless SSR, ISR, SSG, and CSR support with automatic mode detection and performance optimization.',
+    keywords: 'nextjs, next.js, app router, react-query, tanstack-query, hydration, ssr, isr, ssg, server-side rendering, react, typescript',
+    pathname: '/',
+  }
+
   return (
-    <Layout>
+    <Layout seo={seo}>
       <div className="hero">
         <h1 className="hero-title">{t('hero.title')}</h1>
         <p className="hero-subtitle">

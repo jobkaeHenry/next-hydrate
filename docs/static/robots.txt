@@ -1,0 +1,18 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Disallow specific paths
+Disallow: /404
+Disallow: /dev-404-page
+
+# Allow Googlebot
+User-agent: Googlebot
+Allow: /
+
+# Allow Googlebot Images
+User-agent: Googlebot-Image
+Allow: /
+
+# Sitemaps
+Sitemap: https://next-hydrate.dev/sitemap-index.xml
