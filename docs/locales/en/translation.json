@@ -1,0 +1,54 @@
+{
+  "site": {
+    "title": "next-hydrate",
+    "subtitle": "Universal hydration utilities for Next.js App Router + React Query v5",
+    "description": "Universal hydration utilities for Next.js App Router + React Query v5"
+  },
+  "nav": {
+    "docs": "Docs",
+    "api": "API",
+    "examples": "Examples",
+    "github": "GitHub"
+  },
+  "hero": {
+    "title": "next-hydrate",
+    "subtitle": "Universal hydration utilities for Next.js App Router + React Query v5",
+    "getStarted": "Get Started",
+    "viewOnGithub": "View on GitHub"
+  },
+  "features": {
+    "universal": {
+      "title": "🚀 Universal Support",
+      "description": "Works seamlessly with SSR, ISR, SSG, and CSR. Automatically detects the rendering mode and optimizes hydration accordingly."
+    },
+    "performance": {
+      "title": "⚡ Performance First",
+      "description": "Built-in concurrency control, payload size limits, and memory optimization for both server and client environments."
+    },
+    "typeSafe": {
+      "title": "🎯 Type-Safe",
+      "description": "Full TypeScript support with comprehensive type definitions and excellent IDE autocomplete experience."
+    },
+    "devFriendly": {
+      "title": "🛠️ Developer Friendly",
+      "description": "Simple API with powerful features. Integrated logging, error handling, and React Query DevTools support."
+    },
+    "zeroConfig": {
+      "title": "📦 Zero Configuration",
+      "description": "Works out of the box with sensible defaults. Customize only what you need."
+    },
+    "smartHydration": {
+      "title": "🔄 Smart Hydration",
+      "description": "Automatic deduplication, selective hydration, and CSR fallback for large payloads."
+    }
+  },
+  "quickStart": {
+    "title": "Quick Start",
+    "install": "npm install @jobkaehenry/next-hydrate @tanstack/react-query",
+    "learnMore": "Learn more →"
+  },
+  "footer": {
+    "copyright": "next-hydrate. MIT License.",
+    "builtWith": "Built with ❤️ by"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "docs": {
+    "gettingStarted": {
+      "title": "시작하기",
+      "intro": "소개",
+      "why": "왜 next-hydrate인가?",
+      "keyFeatures": "주요 기능",
+      "universalRendering": "범용 렌더링 지원",
+      "performanceFirst": "성능 우선",
+      "developerExperience": "개발자 경험",
+      "nextSteps": "다음 단계"
+    },
+    "installation": {
+      "title": "설치",
+      "prerequisites": "사전 요구사항",
+      "packageInstallation": "패키지 설치",
+      "peerDependencies": "피어 종속성",
+      "verifyInstallation": "설치 확인",
+      "nextSteps": "다음 단계"
+    },
+    "quickStart": {
+      "title": "빠른 시작",
+      "step1": "1단계: Query Provider 설정",
+      "step2": "2단계: 서버 사이드 데이터 페칭",
+      "step3": "3단계: 클라이언트 컴포넌트",
+      "alternative": "대안: HydrateClient 사용하기",
+      "thatsIt": "완료!",
+      "whatNext": "다음은?"
+    }
+  }
+}

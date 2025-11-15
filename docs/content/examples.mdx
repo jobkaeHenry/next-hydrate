@@ -1,0 +1,273 @@
+---
+title: "Examples"
+slug: "/docs/examples"
+description: "Common usage examples and patterns"
+---
+
+## Basic SSR Example
+
+Simple server-side rendering with data prefetching:
+
+```tsx
+// app/users/page.tsx
+import { getHydrationProps } from '@jobkaehenry/next-hydrate';
+import UsersClient from './UsersClient';
+
+export default async function UsersPage() {
+  const hydration = await getHydrationProps({
+    queries: [
+      {
+        key: ['users'],
+        fetchFn: async () => {
+          const res = await fetch('https://api.example.com/users');
+          return res.json();
+        },
+      },
+    ],
+  });
+
+  return <UsersClient dehydratedState={hydration.dehydratedState} />;
+}
+```
+
+## Multiple Queries
+
+Prefetch multiple queries in parallel:
+
+```tsx
+const hydration = await getHydrationProps({
+  queries: [
+    {
+      key: ['posts'],
+      fetchFn: () => fetchPosts(),
+    },
+    {
+      key: ['categories'],
+      fetchFn: () => fetchCategories(),
+    },
+    {
+      key: ['tags'],
+      fetchFn: () => fetchTags(),
+    },
+  ],
+  concurrency: 3, // Control parallel execution
+});
+```
+
+## ISR (Incremental Static Regeneration)
+
+Enable ISR with revalidation:
+
+```tsx
+export default async function ProductPage() {
+  const hydration = await getHydrationProps({
+    queries: [
+      {
+        key: ['product', id],
+        fetchFn: async () => {
+          const res = await fetch(`/api/products/${id}`, {
+            next: { revalidate: 3600 } // Revalidate every hour
+          });
+          return res.json();
+        },
+      },
+    ],
+    revalidate: 3600, // ISR revalidation interval
+  });
+
+  return <ProductClient dehydratedState={hydration.dehydratedState} />;
+}
+```
+
+## Conditional Hydration
+
+Skip hydration for specific queries:
+
+```tsx
+const hydration = await getHydrationProps({
+  queries: [
+    {
+      key: ['public-data'],
+      fetchFn: () => fetchPublicData(),
+      hydrate: true, // Include in hydration
+    },
+    {
+      key: ['user-specific'],
+      fetchFn: () => fetchUserData(),
+      hydrate: false, // Skip hydration, fetch on client
+    },
+  ],
+});
+```
+
+## Custom Payload Control
+
+Control which data gets hydrated:
+
+```tsx
+const hydration = await getHydrationProps({
+  queries: [
+    {
+      key: ['large-dataset'],
+      fetchFn: () => fetchLargeData(),
+      shouldDehydrate: (data) => {
+        // Only hydrate if data is small enough
+        return data.items.length < 100;
+      },
+    },
+  ],
+  maxPayloadKB: 500, // Increase payload limit
+});
+```
+
+## Infinite Query
+
+Hydrate initial pages of infinite query:
+
+```tsx
+const hydration = await getHydrationProps({
+  queries: [
+    {
+      key: ['posts'],
+      fetchFn: () => fetchPosts({ page: 1 }),
+      pagesToHydrate: 2, // Hydrate first 2 pages
+    },
+  ],
+});
+
+// Client component
+function PostsList() {
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+  } = useInfiniteQuery({
+    queryKey: ['posts'],
+    queryFn: ({ pageParam = 1 }) => fetchPosts({ page: pageParam }),
+    getNextPageParam: (lastPage) => lastPage.nextPage,
+  });
+
+  return (
+    <div>
+      {data?.pages.map((page) =>
+        page.posts.map((post) => <Post key={post.id} {...post} />)
+      )}
+      {hasNextPage && (
+        <button onClick={() => fetchNextPage()}>
+          Load More
+        </button>
+      )}
+    </div>
+  );
+}
+```
+
+## Error Handling
+
+Handle errors gracefully:
+
+```tsx
+const hydration = await getHydrationProps({
+  queries: [
+    {
+      key: ['data'],
+      fetchFn: async () => {
+        try {
+          const res = await fetch('/api/data');
+          if (!res.ok) throw new Error('Fetch failed');
+          return res.json();
+        } catch (error) {
+          console.error('Prefetch error:', error);
+          // Return fallback data or rethrow
+          return { items: [] };
+        }
+      },
+    },
+  ],
+  devLog: true, // Enable logging to see errors
+});
+```
+
+## With Authentication
+
+Handle authenticated requests:
+
+```tsx
+import { cookies } from 'next/headers';
+
+export default async function DashboardPage() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get('auth-token')?.value;
+
+  const hydration = await getHydrationProps({
+    queries: [
+      {
+        key: ['user-data'],
+        fetchFn: async () => {
+          const res = await fetch('/api/user/data', {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          return res.json();
+        },
+      },
+    ],
+  });
+
+  return <DashboardClient dehydratedState={hydration.dehydratedState} />;
+}
+```
+
+## Parallel Route Segments
+
+Each route can independently hydrate:
+
+```tsx
+// app/dashboard/layout.tsx
+export default async function DashboardLayout({ children }) {
+  const hydration = await getHydrationProps({
+    queries: [
+      {
+        key: ['sidebar-data'],
+        fetchFn: () => fetchSidebarData(),
+      },
+    ],
+  });
+
+  return (
+    <div>
+      <Sidebar dehydratedState={hydration.dehydratedState} />
+      {children}
+    </div>
+  );
+}
+
+// app/dashboard/analytics/page.tsx
+export default async function AnalyticsPage() {
+  const hydration = await getHydrationProps({
+    queries: [
+      {
+        key: ['analytics'],
+        fetchFn: () => fetchAnalytics(),
+      },
+    ],
+  });
+
+  return <AnalyticsClient dehydratedState={hydration.dehydratedState} />;
+}
+```
+
+## Development Logging
+
+Enable detailed logging during development:
+
+```tsx
+const hydration = await getHydrationProps({
+  queries: [...],
+  devLog: true, // Enable in development
+});
+
+// Console output:
+// [2024-01-15T10:30:00.000Z] [hydrate] mode=ssr queries=3 payload=45KB
+```

@@ -1,0 +1,31 @@
+{
+  "docs": {
+    "gettingStarted": {
+      "title": "入门指南",
+      "intro": "介绍",
+      "why": "为什么选择 next-hydrate？",
+      "keyFeatures": "主要功能",
+      "universalRendering": "通用渲染支持",
+      "performanceFirst": "性能优先",
+      "developerExperience": "开发者体验",
+      "nextSteps": "下一步"
+    },
+    "installation": {
+      "title": "安装",
+      "prerequisites": "先决条件",
+      "packageInstallation": "包安装",
+      "peerDependencies": "对等依赖",
+      "verifyInstallation": "验证安装",
+      "nextSteps": "下一步"
+    },
+    "quickStart": {
+      "title": "快速开始",
+      "step1": "步骤1：设置 Query Provider",
+      "step2": "步骤2：服务器端数据获取",
+      "step3": "步骤3：客户端组件",
+      "alternative": "替代方案：使用 HydrateClient",
+      "thatsIt": "完成！",
+      "whatNext": "接下来做什么？"
+    }
+  }
+}

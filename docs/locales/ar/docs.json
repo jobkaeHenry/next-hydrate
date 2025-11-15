@@ -1,0 +1,31 @@
+{
+  "docs": {
+    "gettingStarted": {
+      "title": "البدء",
+      "intro": "المقدمة",
+      "why": "لماذا next-hydrate؟",
+      "keyFeatures": "الميزات الرئيسية",
+      "universalRendering": "دعم العرض الشامل",
+      "performanceFirst": "الأداء أولاً",
+      "developerExperience": "تجربة المطور",
+      "nextSteps": "الخطوات التالية"
+    },
+    "installation": {
+      "title": "التثبيت",
+      "prerequisites": "المتطلبات الأساسية",
+      "packageInstallation": "تثبيت الحزمة",
+      "peerDependencies": "التبعيات النظيرة",
+      "verifyInstallation": "التحقق من التثبيت",
+      "nextSteps": "الخطوات التالية"
+    },
+    "quickStart": {
+      "title": "بداية سريعة",
+      "step1": "الخطوة 1: إعداد Query Provider",
+      "step2": "الخطوة 2: جلب البيانات من جانب الخادم",
+      "step3": "الخطوة 3: مكون العميل",
+      "alternative": "بديل: استخدام HydrateClient",
+      "thatsIt": "هذا كل شيء!",
+      "whatNext": "ماذا بعد؟"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "site": {
+    "title": "next-hydrate",
+    "subtitle": "Utilidades de hidratación universal para Next.js App Router y React Query v5",
+    "description": "Utilidades de hidratación universal para Next.js App Router y React Query v5"
+  },
+  "nav": {
+    "docs": "Documentación",
+    "api": "API",
+    "examples": "Ejemplos",
+    "github": "GitHub"
+  },
+  "hero": {
+    "title": "next-hydrate",
+    "subtitle": "Utilidades de hidratación universal para Next.js App Router y React Query v5",
+    "getStarted": "Comenzar",
+    "viewOnGithub": "Ver en GitHub"
+  },
+  "features": {
+    "universal": {
+      "title": "🚀 Soporte Universal",
+      "description": "Funciona perfectamente con SSR, ISR, SSG y CSR. Detecta automáticamente el modo de renderizado y optimiza la hidratación en consecuencia."
+    },
+    "performance": {
+      "title": "⚡ Rendimiento Primero",
+      "description": "Control de concurrencia incorporado, límites de tamaño de carga útil y optimización de memoria para entornos de servidor y cliente."
+    },
+    "typeSafe": {
+      "title": "🎯 Tipo Seguro",
+      "description": "Soporte completo de TypeScript con definiciones de tipos completas y excelente experiencia de autocompletado IDE."
+    },
+    "devFriendly": {
+      "title": "🛠️ Amigable para Desarrolladores",
+      "description": "API simple con funciones poderosas. Registro integrado, manejo de errores y soporte de React Query DevTools."
+    },
+    "zeroConfig": {
+      "title": "📦 Configuración Cero",
+      "description": "Funciona de inmediato con valores predeterminados sensatos. Personaliza solo lo que necesites."
+    },
+    "smartHydration": {
+      "title": "🔄 Hidratación Inteligente",
+      "description": "Deduplicación automática, hidratación selectiva y respaldo CSR para cargas grandes."
+    }
+  },
+  "quickStart": {
+    "title": "Inicio Rápido",
+    "install": "npm install @jobkaehenry/next-hydrate @tanstack/react-query",
+    "learnMore": "Aprende más →"
+  },
+  "footer": {
+    "copyright": "next-hydrate. Licencia MIT.",
+    "builtWith": "Creado con ❤️ por"
+  }
+}

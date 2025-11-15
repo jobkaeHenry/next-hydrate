@@ -1,0 +1,31 @@
+{
+  "docs": {
+    "gettingStarted": {
+      "title": "はじめに",
+      "intro": "紹介",
+      "why": "なぜ next-hydrate なのか？",
+      "keyFeatures": "主な機能",
+      "universalRendering": "ユニバーサルレンダリングサポート",
+      "performanceFirst": "パフォーマンス優先",
+      "developerExperience": "開発者体験",
+      "nextSteps": "次のステップ"
+    },
+    "installation": {
+      "title": "インストール",
+      "prerequisites": "前提条件",
+      "packageInstallation": "パッケージインストール",
+      "peerDependencies": "ピア依存関係",
+      "verifyInstallation": "インストールの確認",
+      "nextSteps": "次のステップ"
+    },
+    "quickStart": {
+      "title": "クイックスタート",
+      "step1": "ステップ1：Query Provider の設定",
+      "step2": "ステップ2：サーバーサイドデータフェッチング",
+      "step3": "ステップ3：クライアントコンポーネント",
+      "alternative": "代替案：HydrateClient の使用",
+      "thatsIt": "完了！",
+      "whatNext": "次は？"
+    }
+  }
+}

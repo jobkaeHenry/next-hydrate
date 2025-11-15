@@ -1,0 +1,202 @@
+---
+title: "API Reference"
+slug: "/docs/api"
+description: "Complete API reference for next-hydrate"
+---
+
+## Core Functions
+
+### getHydrationProps()
+
+Prefetches queries on the server and returns dehydrated state for client hydration.
+
+```typescript
+async function getHydrationProps<TData = unknown>(
+  options: HydrationOptions<TData>
+): Promise<HydrationProps>
+```
+
+#### Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `queries` | `QueryConfig<TData>[]` | - | Array of query configurations to prefetch |
+| `fetchMode` | `FetchMode` | auto-detected | Override automatic fetch mode detection |
+| `revalidate` | `number` | `undefined` | ISR revalidation time in seconds |
+| `concurrency` | `number` | `6` | Maximum number of parallel fetches |
+| `maxPayloadKB` | `number` | `200` | Maximum payload size before CSR fallback |
+| `devLog` | `boolean` | `NODE_ENV !== "production"` | Enable development logging |
+
+#### QueryConfig
+
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `key` | `QueryKey` | Yes | React Query cache key |
+| `fetchFn` | `() => Promise<TData>` | Yes | Async function to fetch data |
+| `hydrate` | `boolean` | No | Whether to include in hydration (default: `true`) |
+| `pagesToHydrate` | `number` | No | Number of pages for infinite queries (default: `1`) |
+| `shouldDehydrate` | `(data: TData) => boolean` | No | Custom dehydration logic |
+
+#### Return Value
+
+```typescript
+interface HydrationProps {
+  dehydratedState: DehydratedState | null;
+  revalidate?: number;
+}
+```
+
+### detectFetchMode()
+
+Automatically detects the current rendering mode.
+
+```typescript
+async function detectFetchMode(): Promise<FetchMode>
+```
+
+#### Return Values
+
+| Mode | Description |
+|------|-------------|
+| `"ssr"` | Server-side rendering (default) |
+| `"isr"` | Incremental static regeneration |
+| `"static"` | Static site generation (build time) |
+| `"csr"` | Client-side rendering |
+
+## Components
+
+### QueryProvider
+
+Root provider component that sets up React Query client.
+
+```tsx
+<QueryProvider>
+  {children}
+</QueryProvider>
+```
+
+**Features:**
+- Creates singleton QueryClient instance
+- Enables React Query DevTools in development
+- Configures optimal defaults for hydration
+
+### HydrateClient
+
+Client component for hydrating queries.
+
+```tsx
+<HydrateClient state={dehydratedState}>
+  {children}
+</HydrateClient>
+```
+
+**Props:**
+- `state`: `DehydratedState | null | undefined` - Dehydrated state from server
+- `children`: `ReactNode` - Child components to hydrate
+
+### withHydration()
+
+Higher-order component for automatic hydration.
+
+```typescript
+function withHydration<P>(
+  Component: ComponentType<P>
+): ComponentType<HydratableComponentProps<P>>
+```
+
+## Utility Functions
+
+### byteSize()
+
+Calculate byte size of an object.
+
+```typescript
+function byteSize(obj: unknown): number
+```
+
+### bytesToKB()
+
+Convert bytes to kilobytes.
+
+```typescript
+function bytesToKB(bytes: number): number
+```
+
+### formatBytes()
+
+Format bytes to human-readable string.
+
+```typescript
+function formatBytes(bytes: number): string
+// Returns: "1.5KB", "2.3MB", etc.
+```
+
+### runWithConcurrency()
+
+Execute tasks with concurrency limit.
+
+```typescript
+async function runWithConcurrency<T>(
+  tasks: (() => Promise<T>)[],
+  limit: number
+): Promise<T[]>
+```
+
+## Logging Functions
+
+### logHydration()
+
+Log hydration information.
+
+```typescript
+function logHydration(info: LogInfo, enabled?: boolean): void
+```
+
+### logError()
+
+Log errors with context.
+
+```typescript
+function logError(error: unknown, context: string): void
+```
+
+### logWarning()
+
+Log warnings.
+
+```typescript
+function logWarning(message: string): void
+```
+
+## Type Definitions
+
+### FetchMode
+
+```typescript
+type FetchMode = "ssr" | "isr" | "static" | "csr"
+```
+
+### HydrationOptions
+
+```typescript
+interface HydrationOptions<TData = unknown> {
+  queries: QueryConfig<TData>[];
+  fetchMode?: FetchMode;
+  revalidate?: number;
+  concurrency?: number;
+  maxPayloadKB?: number;
+  devLog?: boolean;
+}
+```
+
+### QueryConfig
+
+```typescript
+interface QueryConfig<TData = unknown> {
+  key: QueryKey;
+  fetchFn: () => Promise<TData>;
+  hydrate?: boolean;
+  pagesToHydrate?: number;
+  shouldDehydrate?: (data: TData) => boolean;
+}
+```

@@ -1,0 +1,59 @@
+{
+  "name": "@jobkaehenry/next-hydrate-docs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Universal hydration utilities for Next.js App Router and React Query v5 - Official Documentation",
+  "scripts": {
+    "dev": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "gatsby": "^5.13.0",
+    "gatsby-plugin-mdx": "^5.13.0",
+    "gatsby-source-filesystem": "^5.13.0",
+    "gatsby-plugin-sharp": "^5.13.0",
+    "gatsby-transformer-sharp": "^5.13.0",
+    "gatsby-remark-prismjs": "^7.13.0",
+    "gatsby-plugin-image": "^3.13.0",
+    "gatsby-plugin-react-i18next": "^3.0.1",
+    "gatsby-plugin-react-helmet": "^6.13.0",
+    "gatsby-plugin-sitemap": "^6.13.0",
+    "gatsby-plugin-robots-txt": "^1.8.0",
+    "gatsby-plugin-manifest": "^5.13.0",
+    "gatsby-plugin-canonical-urls": "^5.13.0",
+    "i18next": "^23.7.0",
+    "react-i18next": "^14.0.0",
+    "react-helmet": "^6.1.0",
+    "prismjs": "^1.29.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/react-helmet": "^6.1.11"
+  },
+  "keywords": [
+    "nextjs",
+    "next.js",
+    "app router",
+    "react-query",
+    "tanstack-query",
+    "hydration",
+    "ssr",
+    "isr",
+    "ssg",
+    "csr",
+    "server-side rendering",
+    "static site generation",
+    "incremental static regeneration",
+    "react",
+    "typescript",
+    "documentation",
+    "i18n",
+    "gatsby"
+  ]
+}
