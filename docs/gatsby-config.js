@@ -21,68 +21,20 @@ module.exports = {
         stripQueryString: true,
       },
     },
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `next-hydrate Documentation`,
-        short_name: `next-hydrate`,
-        description: `Universal hydration utilities for Next.js App Router + React Query v5`,
-        start_url: `/`,
-        background_color: `#ffffff`,
-        theme_color: `#0070f3`,
-        display: `standalone`,
-        icon: `src/images/icon.png`,
-        icons: [
-          {
-            src: `icons/icon-48x48.png`,
-            sizes: `48x48`,
-            type: `image/png`,
-          },
-          {
-            src: `icons/icon-72x72.png`,
-            sizes: `72x72`,
-            type: `image/png`,
-          },
-          {
-            src: `icons/icon-96x96.png`,
-            sizes: `96x96`,
-            type: `image/png`,
-          },
-          {
-            src: `icons/icon-144x144.png`,
-            sizes: `144x144`,
-            type: `image/png`,
-          },
-          {
-            src: `icons/icon-192x192.png`,
-            sizes: `192x192`,
-            type: `image/png`,
-          },
-          {
-            src: `icons/icon-256x256.png`,
-            sizes: `256x256`,
-            type: `image/png`,
-          },
-          {
-            src: `icons/icon-384x384.png`,
-            sizes: `384x384`,
-            type: `image/png`,
-          },
-          {
-            src: `icons/icon-512x512.png`,
-            sizes: `512x512`,
-            type: `image/png`,
-          },
-        ],
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `content`,
-        path: `${__dirname}/content`,
-      },
-    },
+    // TODO: Re-enable gatsby-plugin-manifest after adding icon.png to src/images/
+    // {
+    //   resolve: `gatsby-plugin-manifest`,
+    //   options: {
+    //     name: `next-hydrate Documentation`,
+    //     short_name: `next-hydrate`,
+    //     description: `Universal hydration utilities for Next.js App Router + React Query v5`,
+    //     start_url: `/`,
+    //     background_color: `#ffffff`,
+    //     theme_color: `#0070f3`,
+    //     display: `standalone`,
+    //     icon: `src/images/icon.png`,
+    //   },
+    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -111,24 +63,6 @@ module.exports = {
           keySeparator: false,
           nsSeparator: false,
         },
-      },
-    },
-    {
-      resolve: `gatsby-plugin-mdx`,
-      options: {
-        extensions: [`.mdx`, `.md`],
-        gatsbyRemarkPlugins: [
-          {
-            resolve: `gatsby-remark-prismjs`,
-            options: {
-              classPrefix: "language-",
-              inlineCodeMarker: null,
-              aliases: {},
-              showLineNumbers: false,
-              noInlineHighlight: false,
-            },
-          },
-        ],
       },
     },
     `gatsby-plugin-image`,

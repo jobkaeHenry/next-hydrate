@@ -1,5 +1,7 @@
 // gatsby-browser.js
 import './src/styles/global.css'
+import './src/styles/code-block.css'
+import './src/styles/doc-layout.css'
 
 export const onClientEntry = () => {
   // Polyfill for older browsers if needed

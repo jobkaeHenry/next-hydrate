@@ -1,15 +1,11 @@
----
-title: "Examples"
-slug: "/docs/examples"
-description: "Common usage examples and patterns"
----
+import React from 'react'
+import { graphql } from 'gatsby'
+import DocLayout from '../../components/DocLayout'
+import CodeBlock from '../../components/CodeBlock'
+import SEO from '../../components/SEO'
 
-## Basic SSR Example
-
-Simple server-side rendering with data prefetching:
-
-```tsx
-// app/users/page.tsx
+const ExamplesPage = () => {
+  const basicSSR = `// app/users/page.tsx
 import { getHydrationProps } from '@jobkaehenry/next-hydrate';
 import UsersClient from './UsersClient';
 
@@ -27,15 +23,9 @@ export default async function UsersPage() {
   });
 
   return <UsersClient dehydratedState={hydration.dehydratedState} />;
-}
-```
+}`
 
-## Multiple Queries
-
-Prefetch multiple queries in parallel:
-
-```tsx
-const hydration = await getHydrationProps({
+  const multipleQueries = `const hydration = await getHydrationProps({
   queries: [
     {
       key: ['posts'],
@@ -51,21 +41,15 @@ const hydration = await getHydrationProps({
     },
   ],
   concurrency: 3, // Control parallel execution
-});
-```
+});`
 
-## ISR (Incremental Static Regeneration)
-
-Enable ISR with revalidation:
-
-```tsx
-export default async function ProductPage() {
+  const isrExample = `export default async function ProductPage() {
   const hydration = await getHydrationProps({
     queries: [
       {
         key: ['product', id],
         fetchFn: async () => {
-          const res = await fetch(`/api/products/${id}`, {
+          const res = await fetch(\`/api/products/\${id}\`, {
             next: { revalidate: 3600 } // Revalidate every hour
           });
           return res.json();
@@ -76,15 +60,9 @@ export default async function ProductPage() {
   });
 
   return <ProductClient dehydratedState={hydration.dehydratedState} />;
-}
-```
+}`
 
-## Conditional Hydration
-
-Skip hydration for specific queries:
-
-```tsx
-const hydration = await getHydrationProps({
+  const conditionalHydration = `const hydration = await getHydrationProps({
   queries: [
     {
       key: ['public-data'],
@@ -97,15 +75,9 @@ const hydration = await getHydrationProps({
       hydrate: false, // Skip hydration, fetch on client
     },
   ],
-});
-```
+});`
 
-## Custom Payload Control
-
-Control which data gets hydrated:
-
-```tsx
-const hydration = await getHydrationProps({
+  const payloadControl = `const hydration = await getHydrationProps({
   queries: [
     {
       key: ['large-dataset'],
@@ -117,15 +89,9 @@ const hydration = await getHydrationProps({
     },
   ],
   maxPayloadKB: 500, // Increase payload limit
-});
-```
+});`
 
-## Infinite Query
-
-Hydrate initial pages of infinite query:
-
-```tsx
-const hydration = await getHydrationProps({
+  const infiniteQuery = `const hydration = await getHydrationProps({
   queries: [
     {
       key: ['posts'],
@@ -159,15 +125,9 @@ function PostsList() {
       )}
     </div>
   );
-}
-```
+}`
 
-## Error Handling
-
-Handle errors gracefully:
-
-```tsx
-const hydration = await getHydrationProps({
+  const errorHandling = `const hydration = await getHydrationProps({
   queries: [
     {
       key: ['data'],
@@ -185,15 +145,9 @@ const hydration = await getHydrationProps({
     },
   ],
   devLog: true, // Enable logging to see errors
-});
-```
+});`
 
-## With Authentication
-
-Handle authenticated requests:
-
-```tsx
-import { cookies } from 'next/headers';
+  const withAuth = `import { cookies } from 'next/headers';
 
 export default async function DashboardPage() {
   const cookieStore = await cookies();
@@ -206,7 +160,7 @@ export default async function DashboardPage() {
         fetchFn: async () => {
           const res = await fetch('/api/user/data', {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: \`Bearer \${token}\`,
             },
           });
           return res.json();
@@ -216,58 +170,66 @@ export default async function DashboardPage() {
   });
 
   return <DashboardClient dehydratedState={hydration.dehydratedState} />;
-}
-```
-
-## Parallel Route Segments
-
-Each route can independently hydrate:
-
-```tsx
-// app/dashboard/layout.tsx
-export default async function DashboardLayout({ children }) {
-  const hydration = await getHydrationProps({
-    queries: [
-      {
-        key: ['sidebar-data'],
-        fetchFn: () => fetchSidebarData(),
-      },
-    ],
-  });
+}`
 
   return (
-    <div>
-      <Sidebar dehydratedState={hydration.dehydratedState} />
-      {children}
-    </div>
-  );
+    <>
+      <SEO
+        title="Examples - next-hydrate"
+        description="Common usage examples and patterns"
+        pathname="/docs/examples"
+      />
+      <DocLayout>
+        <h1>Examples</h1>
+
+        <h2>Basic SSR Example</h2>
+        <p>Simple server-side rendering with data prefetching:</p>
+        <CodeBlock code={basicSSR} language="tsx" title="app/users/page.tsx" />
+
+        <h2>Multiple Queries</h2>
+        <p>Prefetch multiple queries in parallel:</p>
+        <CodeBlock code={multipleQueries} language="tsx" />
+
+        <h2>ISR (Incremental Static Regeneration)</h2>
+        <p>Enable ISR with revalidation:</p>
+        <CodeBlock code={isrExample} language="tsx" />
+
+        <h2>Conditional Hydration</h2>
+        <p>Skip hydration for specific queries:</p>
+        <CodeBlock code={conditionalHydration} language="tsx" />
+
+        <h2>Custom Payload Control</h2>
+        <p>Control which data gets hydrated:</p>
+        <CodeBlock code={payloadControl} language="tsx" />
+
+        <h2>Infinite Query</h2>
+        <p>Hydrate initial pages of infinite query:</p>
+        <CodeBlock code={infiniteQuery} language="tsx" />
+
+        <h2>Error Handling</h2>
+        <p>Handle errors gracefully:</p>
+        <CodeBlock code={errorHandling} language="tsx" />
+
+        <h2>With Authentication</h2>
+        <p>Handle authenticated requests:</p>
+        <CodeBlock code={withAuth} language="tsx" />
+      </DocLayout>
+    </>
+  )
 }
 
-// app/dashboard/analytics/page.tsx
-export default async function AnalyticsPage() {
-  const hydration = await getHydrationProps({
-    queries: [
-      {
-        key: ['analytics'],
-        fetchFn: () => fetchAnalytics(),
-      },
-    ],
-  });
+export default ExamplesPage
 
-  return <AnalyticsClient dehydratedState={hydration.dehydratedState} />;
-}
-```
-
-## Development Logging
-
-Enable detailed logging during development:
-
-```tsx
-const hydration = await getHydrationProps({
-  queries: [...],
-  devLog: true, // Enable in development
-});
-
-// Console output:
-// [2024-01-15T10:30:00.000Z] [hydrate] mode=ssr queries=3 payload=45KB
-```
+export const query = graphql`
+  query($language: String!) {
+    locales: allLocale(filter: {language: {eq: $language}}) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+  }
+`

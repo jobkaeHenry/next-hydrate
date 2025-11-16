@@ -1,0 +1,110 @@
+.code-block-wrapper {
+  position: relative;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #011627;
+}
+
+.code-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: #01111f;
+  border-bottom: 1px solid #1e2a38;
+}
+
+.code-block-title {
+  color: #d6deeb;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: 'Fira Code', 'Courier New', monospace;
+}
+
+.copy-button {
+  background: #0070f3;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 112, 243, 0.2);
+}
+
+.copy-button:hover {
+  background: #0051cc;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 112, 243, 0.3);
+}
+
+.copy-button:active {
+  transform: translateY(0);
+}
+
+.copy-button-inline {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 10;
+  opacity: 0.7;
+}
+
+.copy-button-inline:hover {
+  opacity: 1;
+}
+
+.code-block-wrapper pre {
+  margin: 0 !important;
+  padding: 1.5rem !important;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  font-family: 'Fira Code', 'Courier New', monospace;
+}
+
+.code-block-wrapper code {
+  font-family: 'Fira Code', 'Courier New', monospace;
+}
+
+.line-number {
+  display: inline-block;
+  width: 2.5em;
+  user-select: none;
+  opacity: 0.4;
+  margin-right: 1.5em;
+  text-align: right;
+  font-size: 0.875rem;
+}
+
+/* Scrollbar styling for code blocks */
+.code-block-wrapper pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+.code-block-wrapper pre::-webkit-scrollbar-track {
+  background: #01111f;
+  border-radius: 4px;
+}
+
+.code-block-wrapper pre::-webkit-scrollbar-thumb {
+  background: #1e2a38;
+  border-radius: 4px;
+}
+
+.code-block-wrapper pre::-webkit-scrollbar-thumb:hover {
+  background: #2e3a48;
+}
+
+/* Inline code (not in code blocks) */
+:not(pre) > code {
+  background: #f5f5f5;
+  color: #eb5757;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+  font-family: 'Fira Code', 'Courier New', monospace;
+}
