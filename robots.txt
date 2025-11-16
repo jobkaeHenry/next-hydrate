@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /404
+Disallow: /dev-404-page
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+Sitemap: https://jobkaehenry.github.io/next-hydrate/sitemap-index.xml
+Host: https://jobkaehenry.github.io
