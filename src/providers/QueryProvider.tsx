@@ -9,6 +9,34 @@ export interface QueryProviderProps {
   children: ReactNode;
 }
 
+/**
+ * Global React Query provider component for the application
+ *
+ * @param props - Component props
+ * @returns Provider component wrapping children
+ *
+ * @remarks
+ * This component should be placed at the root of your application (e.g., in app/layout.tsx).
+ * It provides:
+ * - QueryClientProvider for React Query
+ * - ReactQueryDevtools in development mode
+ *
+ * @example
+ * ```tsx
+ * // app/layout.tsx
+ * import { QueryProvider } from '@jobkaehenry/next-hydrate';
+ *
+ * export default function RootLayout({ children }: { children: React.ReactNode }) {
+ *   return (
+ *     <html lang="en">
+ *       <body>
+ *         <QueryProvider>{children}</QueryProvider>
+ *       </body>
+ *     </html>
+ *   );
+ * }
+ * ```
+ */
 export function QueryProvider({ children }: QueryProviderProps) {
   const client = getQueryClient();
 

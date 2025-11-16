@@ -1,31 +1,219 @@
 {
   "docs": {
     "gettingStarted": {
-      "title": "शुरू करना",
-      "intro": "परिचय",
-      "why": "next-hydrate क्यों?",
+      "seoTitle": "शुरुआत करना - next-hydrate",
+      "seoDescription": "जानें कि next-hydrate के साथ कैसे शुरुआत करें",
+      "title": "शुरुआत करना",
+      "introduction": "परिचय",
+      "intro": {
+        "description": "next-hydrate एक शक्तिशाली लाइब्रेरी है जो React Query v5 का उपयोग करने वाले Next.js App Router एप्लिकेशन के लिए सार्वभौमिक हाइड्रेशन उपयोगिताएँ प्रदान करती है। यह स्वचालित रूप से सर्वर-साइड रेंडरिंग, इंक्रीमेंटल स्टैटिक रीजेनरेशन, स्टैटिक साइट जेनरेशन, और क्लाइंट-साइड रेंडरिंग की जटिलता को संभालती है।"
+      },
+      "whyNextHydrate": "next-hydrate क्यों?",
+      "why": {
+        "description": "विभिन्न Next.js रेंडरिंग रणनीतियों में React Query स्टेट का प्रबंधन करना चुनौतीपूर्ण हो सकता है। next-hydrate इसे हल करता है:",
+        "automaticDetection": {
+          "title": "स्वचालित पहचान",
+          "description": "स्वचालित रूप से पहचानता है कि आप SSR, ISR, SSG, या CSR मोड में हैं"
+        },
+        "performanceOptimized": {
+          "title": "प्रदर्शन अनुकूलित",
+          "description": "अंतर्निहित समवर्ती नियंत्रण, पेलोड आकार सीमा, और मेमोरी अनुकूलन"
+        },
+        "typeSafe": {
+          "title": "टाइप-सुरक्षित",
+          "description": "व्यापक टाइप परिभाषाओं के साथ पूर्ण TypeScript समर्थन"
+        },
+        "developerFriendly": {
+          "title": "डेवलपर मित्रवत",
+          "description": "शक्तिशाली सुविधाओं और एकीकृत लॉगिंग के साथ सरल API"
+        }
+      },
       "keyFeatures": "मुख्य विशेषताएं",
-      "universalRendering": "सार्वभौमिक रेंडरिंग समर्थन",
-      "performanceFirst": "प्रदर्शन प्राथमिकता",
-      "developerExperience": "डेवलपर अनुभव",
-      "nextSteps": "अगले कदम"
+      "universalRendering": {
+        "title": "सार्वभौमिक रेंडरिंग समर्थन",
+        "description": "सभी Next.js रेंडरिंग मोड में निर्बाध रूप से काम करता है:",
+        "ssr": "सर्वर-साइड रेंडरिंग",
+        "isr": "इंक्रीमेंटल स्टैटिक रीजेनरेशन",
+        "ssg": "स्टैटिक साइट जेनरेशन",
+        "csr": "क्लाइंट-साइड रेंडरिंग"
+      },
+      "performanceFirst": {
+        "title": "प्रदर्शन पहले",
+        "concurrency": "समानांतर फेच के लिए समवर्ती नियंत्रण",
+        "payloadSize": "स्वचालित CSR फॉलबैक के साथ पेलोड आकार निगरानी",
+        "memoryEfficient": "मेमोरी-कुशल सर्वर-साइड QueryClient",
+        "deduplication": "क्वेरी डिडुप्लीकेशन"
+      },
+      "developerExperience": {
+        "title": "डेवलपर अनुभव",
+        "typescript": "उत्कृष्ट IDE समर्थन के साथ TypeScript-पहले",
+        "logging": "एकीकृत लॉगिंग और डिबगिंग",
+        "devTools": "React Query DevTools समर्थन",
+        "errorHandling": "व्यापक त्रुटि प्रबंधन"
+      },
+      "nextSteps": {
+        "title": "अगले कदम",
+        "description": "शुरू करने के लिए तैयार हैं? इंस्टॉलेशन गाइड देखें या सीधे क्विक स्टार्ट ट्यूटोरियल पर जाएं।"
+      }
     },
     "installation": {
+      "seoTitle": "इंस्टॉलेशन - next-hydrate",
+      "seoDescription": "अपने Next.js प्रोजेक्ट में next-hydrate इंस्टॉल करें",
       "title": "इंस्टॉलेशन",
-      "prerequisites": "पूर्व आवश्यकताएं",
+      "prerequisites": "पूर्वापेक्षाएं",
+      "prerequisitesDescription": "next-hydrate इंस्टॉल करने से पहले, सुनिश्चित करें कि आपके पास निम्नलिखित हैं:",
+      "orHigher": "या उच्चतर",
       "packageInstallation": "पैकेज इंस्टॉलेशन",
+      "packageDescription": "अपने पसंदीदा पैकेज मैनेजर का उपयोग करके next-hydrate और इसकी पीयर निर्भरताओं को इंस्टॉल करें:",
       "peerDependencies": "पीयर निर्भरताएं",
+      "peerDependenciesDescription": "निम्नलिखित पैकेज पीयर निर्भरताओं के रूप में आवश्यक हैं:",
+      "peerDependenciesNote": "यदि आपने ये पैकेज इंस्टॉल नहीं किए हैं, तो next-hydrate का उपयोग करने से पहले उन्हें इंस्टॉल करना सुनिश्चित करें।",
       "verifyInstallation": "इंस्टॉलेशन सत्यापित करें",
-      "nextSteps": "अगले कदम"
+      "verifyDescription": "यह सत्यापित करने के लिए कि इंस्टॉलेशन सफल था, आप अपने कोड में लाइब्रेरी को इम्पोर्ट कर सकते हैं:",
+      "verifySuccess": "यदि इम्पोर्ट बिना त्रुटियों के काम करता है, तो आप next-hydrate का उपयोग शुरू करने के लिए तैयार हैं!",
+      "nextSteps": "अगले कदम",
+      "nextStepsDescription": "अब जब आपने next-hydrate इंस्टॉल कर लिया है, तो क्विक स्टार्ट गाइड पर जाएं और जानें कि इसे अपने एप्लिकेशन में कैसे उपयोग करें।"
     },
     "quickStart": {
-      "title": "त्वरित शुरुआत",
-      "step1": "चरण 1: Query Provider सेटअप करें",
-      "step2": "चरण 2: सर्वर-साइड डेटा फेचिंग",
-      "step3": "चरण 3: क्लाइंट कंपोनेंट",
-      "alternative": "विकल्प: HydrateClient का उपयोग करना",
-      "thatsIt": "बस इतना ही!",
-      "whatNext": "अब क्या?"
+      "seoTitle": "क्विक स्टार्ट - next-hydrate",
+      "seoDescription": "मिनटों में next-hydrate के साथ शुरुआत करें",
+      "title": "क्विक स्टार्ट",
+      "step1": {
+        "title": "चरण 1: Query Provider सेटअप करें",
+        "description": "सबसे पहले, अपने रूट लेआउट में QueryProvider के साथ अपने एप्लिकेशन को रैप करें:"
+      },
+      "step2": {
+        "title": "चरण 2: सर्वर-साइड डेटा फेचिंग",
+        "description": "अपने सर्वर कंपोनेंट में, डेटा को प्रीफेच करने के लिए getHydrationProps का उपयोग करें:"
+      },
+      "step3": {
+        "title": "चरण 3: क्लाइंट कंपोनेंट",
+        "description": "एक क्लाइंट कंपोनेंट बनाएं जो हाइड्रेटेड डेटा का उपयोग करता है:"
+      },
+      "alternative": {
+        "title": "विकल्प: HydrateClient का उपयोग करना",
+        "description": "यदि आप HOCs की तुलना में कंपोजिशन को पसंद करते हैं, तो आप सीधे HydrateClient का उपयोग कर सकते हैं:"
+      },
+      "thatsIt": {
+        "title": "बस इतना ही!",
+        "description": "आपने अपने Next.js एप्लिकेशन में next-hydrate को सफलतापूर्वक सेटअप कर लिया है। लाइब्रेरी स्वचालित रूप से:",
+        "feature1": "रेंडरिंग मोड (SSR/ISR/SSG/CSR) का पता लगाएगी",
+        "feature2": "सर्वर पर क्वेरीज़ को प्रीफेच करेगी",
+        "feature3": "सर्वर डेटा के साथ क्लाइंट को हाइड्रेट करेगी",
+        "feature4": "यदि पेलोड बहुत बड़ा है तो CSR पर फॉल बैक करेगी"
+      },
+      "whatsNext": {
+        "title": "आगे क्या है?",
+        "fetchModes": "फेच मोड के बारे में जानें",
+        "apiReference": "API संदर्भ देखें",
+        "examples": "सामान्य उपयोग मामलों के लिए उदाहरण देखें"
+      }
+    },
+    "api": {
+      "seoTitle": "API संदर्भ - next-hydrate",
+      "seoDescription": "next-hydrate के लिए पूर्ण API संदर्भ",
+      "title": "API संदर्भ",
+      "coreFunctions": "मुख्य फ़ंक्शन",
+      "getHydrationProps": {
+        "description": "सर्वर पर क्वेरीज़ को प्रीफेच करता है और क्लाइंट हाइड्रेशन के लिए डीहाइड्रेटेड स्टेट रिटर्न करता है।"
+      },
+      "parameters": "पैरामीटर्स",
+      "table": {
+        "parameter": "पैरामीटर",
+        "type": "प्रकार",
+        "default": "डिफ़ॉल्ट",
+        "description": "विवरण",
+        "property": "प्रॉपर्टी",
+        "required": "आवश्यक",
+        "mode": "मोड"
+      },
+      "params": {
+        "queries": "प्रीफेच करने के लिए क्वेरी कॉन्फ़िगरेशन की सरणी",
+        "fetchMode": {
+          "default": "स्वतः-पहचान",
+          "description": "स्वचालित फेच मोड पहचान को ओवरराइड करें"
+        },
+        "revalidate": "ISR पुनः मान्यकरण समय सेकंड में",
+        "concurrency": "समानांतर फेच की अधिकतम संख्या",
+        "maxPayloadKB": "CSR फॉलबैक से पहले अधिकतम पेलोड आकार",
+        "devLog": "विकास लॉगिंग सक्षम करें"
+      },
+      "yes": "हां",
+      "no": "नहीं",
+      "queryConfig": {
+        "key": "React Query कैश कुंजी",
+        "fetchFn": "डेटा फेच करने के लिए एसिंक फ़ंक्शन",
+        "hydrate": "क्या हाइड्रेशन में शामिल करना है (डिफ़ॉल्ट: true)",
+        "pagesToHydrate": "अनंत क्वेरीज़ के लिए पृष्ठों की संख्या (डिफ़ॉल्ट: 1)",
+        "shouldDehydrate": "कस्टम डीहाइड्रेशन तर्क"
+      },
+      "returnValue": "रिटर्न वैल्यू",
+      "detectFetchMode": {
+        "description": "वर्तमान रेंडरिंग मोड को स्वचालित रूप से पहचानता है।"
+      },
+      "returnValues": "रिटर्न वैल्यूज़",
+      "modes": {
+        "ssr": "सर्वर-साइड रेंडरिंग (डिफ़ॉल्ट)",
+        "isr": "इंक्रीमेंटल स्टैटिक रीजेनरेशन",
+        "static": "स्टैटिक साइट जेनरेशन (बिल्ड टाइम)",
+        "csr": "क्लाइंट-साइड रेंडरिंग"
+      },
+      "components": "कंपोनेंट्स",
+      "usage": "उपयोग",
+      "features": "विशेषताएं",
+      "queryProvider": {
+        "description": "रूट प्रोवाइडर कंपोनेंट जो React Query क्लाइंट सेटअप करता है।",
+        "feature1": "सिंगलटन QueryClient इंस्टेंस बनाता है",
+        "feature2": "विकास में React Query DevTools सक्षम करता है",
+        "feature3": "हाइड्रेशन के लिए इष्टतम डिफ़ॉल्ट कॉन्फ़िगर करता है"
+      },
+      "props": "प्रॉप्स",
+      "hydrateClient": {
+        "description": "क्वेरीज़ को हाइड्रेट करने के लिए क्लाइंट कंपोनेंट।",
+        "stateProp": "सर्वर से डीहाइड्रेटेड स्टेट",
+        "childrenProp": "हाइड्रेट करने के लिए चाइल्ड कंपोनेंट्स"
+      },
+      "withHydration": {
+        "description": "स्वचालित हाइड्रेशन के लिए हायर-ऑर्डर कंपोनेंट।"
+      },
+      "typeDefinitions": "टाइप परिभाषाएं"
+    },
+    "examples": {
+      "seoTitle": "उदाहरण - next-hydrate",
+      "seoDescription": "सामान्य उपयोग उदाहरण और पैटर्न",
+      "title": "उदाहरण",
+      "basicSSR": {
+        "title": "मूल SSR उदाहरण",
+        "description": "डेटा प्रीफेचिंग के साथ सरल सर्वर-साइड रेंडरिंग:"
+      },
+      "multipleQueries": {
+        "title": "एकाधिक क्वेरीज़",
+        "description": "समानांतर में एकाधिक क्वेरीज़ को प्रीफेच करें:"
+      },
+      "isr": {
+        "title": "ISR (इंक्रीमेंटल स्टैटिक रीजेनरेशन)",
+        "description": "पुनः मान्यकरण के साथ ISR सक्षम करें:"
+      },
+      "conditionalHydration": {
+        "title": "सशर्त हाइड्रेशन",
+        "description": "विशिष्ट क्वेरीज़ के लिए हाइड्रेशन छोड़ें:"
+      },
+      "payloadControl": {
+        "title": "कस्टम पेलोड नियंत्रण",
+        "description": "नियंत्रित करें कि कौन सा डेटा हाइड्रेट होता है:"
+      },
+      "infiniteQuery": {
+        "title": "अनंत क्वेरी",
+        "description": "अनंत क्वेरी के प्रारंभिक पृष्ठों को हाइड्रेट करें:"
+      },
+      "errorHandling": {
+        "title": "त्रुटि प्रबंधन",
+        "description": "त्रुटियों को सुंदरता से संभालें:"
+      },
+      "withAuth": {
+        "title": "प्रमाणीकरण के साथ",
+        "description": "प्रमाणित अनुरोधों को संभालें:"
+      }
     }
   }
 }

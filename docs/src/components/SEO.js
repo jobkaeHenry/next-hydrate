@@ -198,7 +198,7 @@ const SEO = ({
         },
         {
           name: `theme-color`,
-          content: `#0070f3`,
+          content: `#00a5ba`,
         },
         {
           name: `robots`,

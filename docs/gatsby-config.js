@@ -55,13 +55,15 @@ module.exports = {
         localeJsonSourceName: `locales`,
         languages: ['en', 'ko', 'zh', 'ja', 'fr', 'es', 'ar', 'hi'],
         defaultLanguage: `en`,
+        redirect: true,
+        generateDefaultLanguagePage: true,
         siteUrl: `https://next-hydrate.dev`,
         i18nextOptions: {
           interpolation: {
             escapeValue: false,
           },
-          keySeparator: false,
-          nsSeparator: false,
+          keySeparator: '.',
+          nsSeparator: ':',
         },
       },
     },

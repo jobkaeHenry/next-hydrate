@@ -1,11 +1,14 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 import DocLayout from '../../components/DocLayout'
 import CodeBlock from '../../components/CodeBlock'
 import SEO from '../../components/SEO'
 
 const ExamplesPage = () => {
-  const basicSSR = `// app/users/page.tsx
+  const { t } = useTranslation()
+  const basicSSR = `// ========== 서버 컴포넌트 ==========
+// app/users/page.tsx
 import { getHydrationProps } from '@jobkaehenry/next-hydrate';
 import UsersClient from './UsersClient';
 
@@ -23,6 +26,70 @@ export default async function UsersPage() {
   });
 
   return <UsersClient dehydratedState={hydration.dehydratedState} />;
+}
+
+// ========== 클라이언트 컴포넌트 (withHydration HOC 사용) ==========
+// app/users/UsersClient.tsx
+'use client';
+import { withHydration } from '@jobkaehenry/next-hydrate';
+import { useQuery } from '@tanstack/react-query';
+
+function UsersClientBase() {
+  // 서버에서 미리 가져온 데이터가 자동으로 hydrate됨
+  const { data: users, isLoading } = useQuery({
+    queryKey: ['users'],
+    queryFn: async () => {
+      const res = await fetch('https://api.example.com/users');
+      return res.json();
+    },
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+
+  return (
+    <div>
+      <h1>Users</h1>
+      {users?.map((user) => (
+        <div key={user.id}>{user.name}</div>
+      ))}
+    </div>
+  );
+}
+
+// withHydration HOC로 감싸서 자동 hydration
+export default withHydration(UsersClientBase);
+
+// ========== 또는 HydrateClient 직접 사용 ==========
+// app/users/UsersClient.tsx (대안)
+'use client';
+import { HydrateClient } from '@jobkaehenry/next-hydrate';
+import { useQuery } from '@tanstack/react-query';
+
+function UsersView() {
+  const { data: users } = useQuery({
+    queryKey: ['users'],
+    queryFn: async () => {
+      const res = await fetch('https://api.example.com/users');
+      return res.json();
+    },
+  });
+
+  return (
+    <div>
+      <h1>Users</h1>
+      {users?.map((user) => (
+        <div key={user.id}>{user.name}</div>
+      ))}
+    </div>
+  );
+}
+
+export default function UsersClient({ dehydratedState }) {
+  return (
+    <HydrateClient state={dehydratedState}>
+      <UsersView />
+    </HydrateClient>
+  );
 }`
 
   const multipleQueries = `const hydration = await getHydrationProps({
@@ -175,43 +242,43 @@ export default async function DashboardPage() {
   return (
     <>
       <SEO
-        title="Examples - next-hydrate"
-        description="Common usage examples and patterns"
+        title={t('docs.examples.seoTitle')}
+        description={t('docs.examples.seoDescription')}
         pathname="/docs/examples"
       />
       <DocLayout>
-        <h1>Examples</h1>
+        <h1>{t('docs.examples.title')}</h1>
 
-        <h2>Basic SSR Example</h2>
-        <p>Simple server-side rendering with data prefetching:</p>
+        <h2>{t('docs.examples.basicSSR.title')}</h2>
+        <p>{t('docs.examples.basicSSR.description')}</p>
         <CodeBlock code={basicSSR} language="tsx" title="app/users/page.tsx" />
 
-        <h2>Multiple Queries</h2>
-        <p>Prefetch multiple queries in parallel:</p>
+        <h2>{t('docs.examples.multipleQueries.title')}</h2>
+        <p>{t('docs.examples.multipleQueries.description')}</p>
         <CodeBlock code={multipleQueries} language="tsx" />
 
-        <h2>ISR (Incremental Static Regeneration)</h2>
-        <p>Enable ISR with revalidation:</p>
+        <h2>{t('docs.examples.isr.title')}</h2>
+        <p>{t('docs.examples.isr.description')}</p>
         <CodeBlock code={isrExample} language="tsx" />
 
-        <h2>Conditional Hydration</h2>
-        <p>Skip hydration for specific queries:</p>
+        <h2>{t('docs.examples.conditionalHydration.title')}</h2>
+        <p>{t('docs.examples.conditionalHydration.description')}</p>
         <CodeBlock code={conditionalHydration} language="tsx" />
 
-        <h2>Custom Payload Control</h2>
-        <p>Control which data gets hydrated:</p>
+        <h2>{t('docs.examples.payloadControl.title')}</h2>
+        <p>{t('docs.examples.payloadControl.description')}</p>
         <CodeBlock code={payloadControl} language="tsx" />
 
-        <h2>Infinite Query</h2>
-        <p>Hydrate initial pages of infinite query:</p>
+        <h2>{t('docs.examples.infiniteQuery.title')}</h2>
+        <p>{t('docs.examples.infiniteQuery.description')}</p>
         <CodeBlock code={infiniteQuery} language="tsx" />
 
-        <h2>Error Handling</h2>
-        <p>Handle errors gracefully:</p>
+        <h2>{t('docs.examples.errorHandling.title')}</h2>
+        <p>{t('docs.examples.errorHandling.description')}</p>
         <CodeBlock code={errorHandling} language="tsx" />
 
-        <h2>With Authentication</h2>
-        <p>Handle authenticated requests:</p>
+        <h2>{t('docs.examples.withAuth.title')}</h2>
+        <p>{t('docs.examples.withAuth.description')}</p>
         <CodeBlock code={withAuth} language="tsx" />
       </DocLayout>
     </>

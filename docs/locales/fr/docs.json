@@ -1,31 +1,219 @@
 {
   "docs": {
     "gettingStarted": {
-      "title": "Commencer",
-      "intro": "Introduction",
-      "why": "Pourquoi next-hydrate ?",
+      "seoTitle": "Démarrage - next-hydrate",
+      "seoDescription": "Apprenez à démarrer avec next-hydrate",
+      "title": "Démarrage",
+      "introduction": "Introduction",
+      "intro": {
+        "description": "next-hydrate est une bibliothèque puissante qui fournit des utilitaires d'hydratation universels pour les applications Next.js App Router utilisant React Query v5. Elle gère automatiquement la complexité du rendu côté serveur, de la régénération statique incrémentale, de la génération de sites statiques et du rendu côté client."
+      },
+      "whyNextHydrate": "Pourquoi next-hydrate ?",
+      "why": {
+        "description": "La gestion de l'état React Query à travers différentes stratégies de rendu Next.js peut être difficile. next-hydrate résout cela en :",
+        "automaticDetection": {
+          "title": "Détection Automatique",
+          "description": "Détecte automatiquement si vous êtes en mode SSR, ISR, SSG ou CSR"
+        },
+        "performanceOptimized": {
+          "title": "Optimisé pour les Performances",
+          "description": "Contrôle de concurrence intégré, limites de taille de charge utile et optimisation de la mémoire"
+        },
+        "typeSafe": {
+          "title": "Sécurité des Types",
+          "description": "Support complet de TypeScript avec des définitions de types complètes"
+        },
+        "developerFriendly": {
+          "title": "Convivial pour les Développeurs",
+          "description": "API simple avec des fonctionnalités puissantes et journalisation intégrée"
+        }
+      },
       "keyFeatures": "Fonctionnalités Clés",
-      "universalRendering": "Support de Rendu Universel",
-      "performanceFirst": "Performance d'Abord",
-      "developerExperience": "Expérience Développeur",
-      "nextSteps": "Prochaines Étapes"
+      "universalRendering": {
+        "title": "Support de Rendu Universel",
+        "description": "Fonctionne sans problème dans tous les modes de rendu Next.js :",
+        "ssr": "Rendu Côté Serveur",
+        "isr": "Régénération Statique Incrémentale",
+        "ssg": "Génération de Site Statique",
+        "csr": "Rendu Côté Client"
+      },
+      "performanceFirst": {
+        "title": "Performance d'Abord",
+        "concurrency": "Contrôle de concurrence pour les récupérations parallèles",
+        "payloadSize": "Surveillance de la taille de la charge utile avec repli automatique vers CSR",
+        "memoryEfficient": "QueryClient côté serveur à mémoire efficace",
+        "deduplication": "Déduplication des requêtes"
+      },
+      "developerExperience": {
+        "title": "Expérience Développeur",
+        "typescript": "TypeScript d'abord avec excellent support IDE",
+        "logging": "Journalisation et débogage intégrés",
+        "devTools": "Support de React Query DevTools",
+        "errorHandling": "Gestion complète des erreurs"
+      },
+      "nextSteps": {
+        "title": "Prochaines Étapes",
+        "description": "Prêt à commencer ? Consultez le guide d'Installation ou passez directement au tutoriel de Démarrage Rapide."
+      }
     },
     "installation": {
+      "seoTitle": "Installation - next-hydrate",
+      "seoDescription": "Installez next-hydrate dans votre projet Next.js",
       "title": "Installation",
       "prerequisites": "Prérequis",
+      "prerequisitesDescription": "Avant d'installer next-hydrate, assurez-vous d'avoir les éléments suivants :",
+      "orHigher": "ou supérieur",
       "packageInstallation": "Installation du Package",
-      "peerDependencies": "Dépendances Pair",
+      "packageDescription": "Installez next-hydrate et ses dépendances homologues à l'aide de votre gestionnaire de paquets préféré :",
+      "peerDependencies": "Dépendances Homologues",
+      "peerDependenciesDescription": "Les packages suivants sont requis en tant que dépendances homologues :",
+      "peerDependenciesNote": "Si vous n'avez pas installé ces packages, assurez-vous de les installer avant d'utiliser next-hydrate.",
       "verifyInstallation": "Vérifier l'Installation",
-      "nextSteps": "Prochaines Étapes"
+      "verifyDescription": "Pour vérifier que l'installation a réussi, vous pouvez importer la bibliothèque dans votre code :",
+      "verifySuccess": "Si l'importation fonctionne sans erreur, vous êtes prêt à commencer à utiliser next-hydrate !",
+      "nextSteps": "Prochaines Étapes",
+      "nextStepsDescription": "Maintenant que vous avez installé next-hydrate, passez au guide de Démarrage Rapide pour apprendre à l'utiliser dans votre application."
     },
     "quickStart": {
+      "seoTitle": "Démarrage Rapide - next-hydrate",
+      "seoDescription": "Soyez opérationnel avec next-hydrate en quelques minutes",
       "title": "Démarrage Rapide",
-      "step1": "Étape 1 : Configurer Query Provider",
-      "step2": "Étape 2 : Récupération de Données Côté Serveur",
-      "step3": "Étape 3 : Composant Client",
-      "alternative": "Alternative : Utiliser HydrateClient",
-      "thatsIt": "C'est Tout !",
-      "whatNext": "Et Maintenant ?"
+      "step1": {
+        "title": "Étape 1 : Configurer Query Provider",
+        "description": "Tout d'abord, enveloppez votre application avec QueryProvider dans votre layout racine :"
+      },
+      "step2": {
+        "title": "Étape 2 : Récupération de Données Côté Serveur",
+        "description": "Dans votre composant serveur, utilisez getHydrationProps pour pré-récupérer les données :"
+      },
+      "step3": {
+        "title": "Étape 3 : Composant Client",
+        "description": "Créez un composant client qui utilise les données hydratées :"
+      },
+      "alternative": {
+        "title": "Alternative : Utilisation de HydrateClient",
+        "description": "Si vous préférez la composition aux HOC, vous pouvez utiliser HydrateClient directement :"
+      },
+      "thatsIt": {
+        "title": "C'est Tout !",
+        "description": "Vous avez configuré avec succès next-hydrate dans votre application Next.js. La bibliothèque va automatiquement :",
+        "feature1": "Détecter le mode de rendu (SSR/ISR/SSG/CSR)",
+        "feature2": "Pré-récupérer les requêtes sur le serveur",
+        "feature3": "Hydrater le client avec les données du serveur",
+        "feature4": "Revenir à CSR si la charge utile est trop grande"
+      },
+      "whatsNext": {
+        "title": "Et Ensuite ?",
+        "fetchModes": "En savoir plus sur les Modes de Récupération",
+        "apiReference": "Explorer la Référence API",
+        "examples": "Consulter les Exemples pour les cas d'utilisation courants"
+      }
+    },
+    "api": {
+      "seoTitle": "Référence API - next-hydrate",
+      "seoDescription": "Référence API complète pour next-hydrate",
+      "title": "Référence API",
+      "coreFunctions": "Fonctions de Base",
+      "getHydrationProps": {
+        "description": "Pré-récupère les requêtes sur le serveur et retourne l'état déshydraté pour l'hydratation client."
+      },
+      "parameters": "Paramètres",
+      "table": {
+        "parameter": "Paramètre",
+        "type": "Type",
+        "default": "Par Défaut",
+        "description": "Description",
+        "property": "Propriété",
+        "required": "Requis",
+        "mode": "Mode"
+      },
+      "params": {
+        "queries": "Tableau de configurations de requêtes à pré-récupérer",
+        "fetchMode": {
+          "default": "auto-détecté",
+          "description": "Remplacer la détection automatique du mode de récupération"
+        },
+        "revalidate": "Temps de revalidation ISR en secondes",
+        "concurrency": "Nombre maximum de récupérations parallèles",
+        "maxPayloadKB": "Taille maximale de charge utile avant le repli CSR",
+        "devLog": "Activer la journalisation de développement"
+      },
+      "yes": "Oui",
+      "no": "Non",
+      "queryConfig": {
+        "key": "Clé de cache React Query",
+        "fetchFn": "Fonction asynchrone pour récupérer les données",
+        "hydrate": "S'il faut inclure dans l'hydratation (par défaut : true)",
+        "pagesToHydrate": "Nombre de pages pour les requêtes infinies (par défaut : 1)",
+        "shouldDehydrate": "Logique de déshydratation personnalisée"
+      },
+      "returnValue": "Valeur de Retour",
+      "detectFetchMode": {
+        "description": "Détecte automatiquement le mode de rendu actuel."
+      },
+      "returnValues": "Valeurs de Retour",
+      "modes": {
+        "ssr": "Rendu côté serveur (par défaut)",
+        "isr": "Régénération statique incrémentale",
+        "static": "Génération de site statique (temps de construction)",
+        "csr": "Rendu côté client"
+      },
+      "components": "Composants",
+      "usage": "Utilisation",
+      "features": "Fonctionnalités",
+      "queryProvider": {
+        "description": "Composant de fournisseur racine qui configure le client React Query.",
+        "feature1": "Crée une instance singleton de QueryClient",
+        "feature2": "Active React Query DevTools en développement",
+        "feature3": "Configure les paramètres par défaut optimaux pour l'hydratation"
+      },
+      "props": "Props",
+      "hydrateClient": {
+        "description": "Composant client pour hydrater les requêtes.",
+        "stateProp": "État déshydraté du serveur",
+        "childrenProp": "Composants enfants à hydrater"
+      },
+      "withHydration": {
+        "description": "Composant d'ordre supérieur pour l'hydratation automatique."
+      },
+      "typeDefinitions": "Définitions de Types"
+    },
+    "examples": {
+      "seoTitle": "Exemples - next-hydrate",
+      "seoDescription": "Exemples d'utilisation courants et modèles",
+      "title": "Exemples",
+      "basicSSR": {
+        "title": "Exemple SSR Basique",
+        "description": "Rendu côté serveur simple avec pré-récupération de données :"
+      },
+      "multipleQueries": {
+        "title": "Requêtes Multiples",
+        "description": "Pré-récupérer plusieurs requêtes en parallèle :"
+      },
+      "isr": {
+        "title": "ISR (Régénération Statique Incrémentale)",
+        "description": "Activer l'ISR avec revalidation :"
+      },
+      "conditionalHydration": {
+        "title": "Hydratation Conditionnelle",
+        "description": "Ignorer l'hydratation pour des requêtes spécifiques :"
+      },
+      "payloadControl": {
+        "title": "Contrôle de Charge Utile Personnalisé",
+        "description": "Contrôler quelles données sont hydratées :"
+      },
+      "infiniteQuery": {
+        "title": "Requête Infinie",
+        "description": "Hydrater les pages initiales de la requête infinie :"
+      },
+      "errorHandling": {
+        "title": "Gestion des Erreurs",
+        "description": "Gérer les erreurs avec élégance :"
+      },
+      "withAuth": {
+        "title": "Avec Authentification",
+        "description": "Gérer les requêtes authentifiées :"
+      }
     }
   }
 }

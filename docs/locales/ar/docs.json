@@ -1,31 +1,219 @@
 {
   "docs": {
     "gettingStarted": {
+      "seoTitle": "البدء - next-hydrate",
+      "seoDescription": "تعلم كيفية البدء مع next-hydrate",
       "title": "البدء",
-      "intro": "المقدمة",
-      "why": "لماذا next-hydrate؟",
+      "introduction": "مقدمة",
+      "intro": {
+        "description": "next-hydrate هي مكتبة قوية توفر أدوات الترطيب الشاملة لتطبيقات Next.js App Router باستخدام React Query v5. تتعامل تلقائيًا مع تعقيد العرض من جانب الخادم، وإعادة الإنشاء الثابتة التدريجية، وإنشاء المواقع الثابتة، والعرض من جانب العميل."
+      },
+      "whyNextHydrate": "لماذا next-hydrate؟",
+      "why": {
+        "description": "يمكن أن تكون إدارة حالة React Query عبر استراتيجيات العرض المختلفة في Next.js تحديًا. تحل next-hydrate هذا من خلال:",
+        "automaticDetection": {
+          "title": "الكشف التلقائي",
+          "description": "تكتشف تلقائيًا ما إذا كنت في وضع SSR أو ISR أو SSG أو CSR"
+        },
+        "performanceOptimized": {
+          "title": "محسّن للأداء",
+          "description": "التحكم المدمج في التزامن وحدود حجم الحمولة وتحسين الذاكرة"
+        },
+        "typeSafe": {
+          "title": "آمن من حيث الأنواع",
+          "description": "دعم كامل لـ TypeScript مع تعريفات أنواع شاملة"
+        },
+        "developerFriendly": {
+          "title": "صديق للمطورين",
+          "description": "واجهة برمجة تطبيقات بسيطة مع ميزات قوية وتسجيل متكامل"
+        }
+      },
       "keyFeatures": "الميزات الرئيسية",
-      "universalRendering": "دعم العرض الشامل",
-      "performanceFirst": "الأداء أولاً",
-      "developerExperience": "تجربة المطور",
-      "nextSteps": "الخطوات التالية"
+      "universalRendering": {
+        "title": "دعم العرض الشامل",
+        "description": "يعمل بسلاسة عبر جميع أوضاع عرض Next.js:",
+        "ssr": "العرض من جانب الخادم",
+        "isr": "إعادة الإنشاء الثابتة التدريجية",
+        "ssg": "إنشاء الموقع الثابت",
+        "csr": "العرض من جانب العميل"
+      },
+      "performanceFirst": {
+        "title": "الأداء أولاً",
+        "concurrency": "التحكم في التزامن لعمليات الجلب المتوازية",
+        "payloadSize": "مراقبة حجم الحمولة مع التراجع التلقائي إلى CSR",
+        "memoryEfficient": "QueryClient من جانب الخادم فعال في استخدام الذاكرة",
+        "deduplication": "إلغاء تكرار الاستعلامات"
+      },
+      "developerExperience": {
+        "title": "تجربة المطور",
+        "typescript": "TypeScript أولاً مع دعم ممتاز لـ IDE",
+        "logging": "التسجيل والتصحيح المتكامل",
+        "devTools": "دعم React Query DevTools",
+        "errorHandling": "معالجة شاملة للأخطاء"
+      },
+      "nextSteps": {
+        "title": "الخطوات التالية",
+        "description": "هل أنت مستعد للبدء؟ راجع دليل التثبيت أو انتقل مباشرة إلى برنامج البدء السريع التعليمي."
+      }
     },
     "installation": {
+      "seoTitle": "التثبيت - next-hydrate",
+      "seoDescription": "قم بتثبيت next-hydrate في مشروع Next.js الخاص بك",
       "title": "التثبيت",
       "prerequisites": "المتطلبات الأساسية",
+      "prerequisitesDescription": "قبل تثبيت next-hydrate، تأكد من أن لديك ما يلي:",
+      "orHigher": "أو أعلى",
       "packageInstallation": "تثبيت الحزمة",
+      "packageDescription": "قم بتثبيت next-hydrate وتبعياته النظيرة باستخدام مدير الحزم المفضل لديك:",
       "peerDependencies": "التبعيات النظيرة",
+      "peerDependenciesDescription": "الحزم التالية مطلوبة كتبعيات نظيرة:",
+      "peerDependenciesNote": "إذا لم تكن قد قمت بتثبيت هذه الحزم، فتأكد من تثبيتها قبل استخدام next-hydrate.",
       "verifyInstallation": "التحقق من التثبيت",
-      "nextSteps": "الخطوات التالية"
+      "verifyDescription": "للتحقق من نجاح التثبيت، يمكنك استيراد المكتبة في الكود الخاص بك:",
+      "verifySuccess": "إذا نجح الاستيراد بدون أخطاء، فأنت جاهز لبدء استخدام next-hydrate!",
+      "nextSteps": "الخطوات التالية",
+      "nextStepsDescription": "الآن بعد أن قمت بتثبيت next-hydrate، انتقل إلى دليل البدء السريع لتعلم كيفية استخدامه في تطبيقك."
     },
     "quickStart": {
-      "title": "بداية سريعة",
-      "step1": "الخطوة 1: إعداد Query Provider",
-      "step2": "الخطوة 2: جلب البيانات من جانب الخادم",
-      "step3": "الخطوة 3: مكون العميل",
-      "alternative": "بديل: استخدام HydrateClient",
-      "thatsIt": "هذا كل شيء!",
-      "whatNext": "ماذا بعد؟"
+      "seoTitle": "البدء السريع - next-hydrate",
+      "seoDescription": "ابدأ العمل مع next-hydrate في دقائق",
+      "title": "البدء السريع",
+      "step1": {
+        "title": "الخطوة 1: إعداد Query Provider",
+        "description": "أولاً، قم بتغليف تطبيقك باستخدام QueryProvider في التخطيط الجذري الخاص بك:"
+      },
+      "step2": {
+        "title": "الخطوة 2: جلب البيانات من جانب الخادم",
+        "description": "في مكون الخادم الخاص بك، استخدم getHydrationProps لجلب البيانات مسبقًا:"
+      },
+      "step3": {
+        "title": "الخطوة 3: مكون العميل",
+        "description": "قم بإنشاء مكون عميل يستخدم البيانات المرطبة:"
+      },
+      "alternative": {
+        "title": "البديل: استخدام HydrateClient",
+        "description": "إذا كنت تفضل التركيب على HOCs، يمكنك استخدام HydrateClient مباشرة:"
+      },
+      "thatsIt": {
+        "title": "هذا كل شيء!",
+        "description": "لقد نجحت في إعداد next-hydrate في تطبيق Next.js الخاص بك. ستقوم المكتبة تلقائيًا بـ:",
+        "feature1": "اكتشاف وضع العرض (SSR/ISR/SSG/CSR)",
+        "feature2": "جلب الاستعلامات مسبقًا على الخادم",
+        "feature3": "ترطيب العميل ببيانات الخادم",
+        "feature4": "الرجوع إلى CSR إذا كانت الحمولة كبيرة جدًا"
+      },
+      "whatsNext": {
+        "title": "ما التالي؟",
+        "fetchModes": "تعرف على أوضاع الجلب",
+        "apiReference": "استكشف مرجع API",
+        "examples": "راجع الأمثلة لحالات الاستخدام الشائعة"
+      }
+    },
+    "api": {
+      "seoTitle": "مرجع API - next-hydrate",
+      "seoDescription": "مرجع API الكامل لـ next-hydrate",
+      "title": "مرجع API",
+      "coreFunctions": "الوظائف الأساسية",
+      "getHydrationProps": {
+        "description": "يجلب الاستعلامات مسبقًا على الخادم ويعيد الحالة المجففة لترطيب العميل."
+      },
+      "parameters": "المعاملات",
+      "table": {
+        "parameter": "المعامل",
+        "type": "النوع",
+        "default": "افتراضي",
+        "description": "الوصف",
+        "property": "الخاصية",
+        "required": "مطلوب",
+        "mode": "الوضع"
+      },
+      "params": {
+        "queries": "مصفوفة من تكوينات الاستعلامات للجلب المسبق",
+        "fetchMode": {
+          "default": "الكشف التلقائي",
+          "description": "تجاوز الكشف التلقائي لوضع الجلب"
+        },
+        "revalidate": "وقت إعادة التحقق من ISR بالثواني",
+        "concurrency": "الحد الأقصى لعدد عمليات الجلب المتوازية",
+        "maxPayloadKB": "الحد الأقصى لحجم الحمولة قبل التراجع إلى CSR",
+        "devLog": "تمكين تسجيل التطوير"
+      },
+      "yes": "نعم",
+      "no": "لا",
+      "queryConfig": {
+        "key": "مفتاح ذاكرة التخزين المؤقت لـ React Query",
+        "fetchFn": "دالة غير متزامنة لجلب البيانات",
+        "hydrate": "ما إذا كان سيتم تضمينه في الترطيب (افتراضي: true)",
+        "pagesToHydrate": "عدد الصفحات للاستعلامات اللانهائية (افتراضي: 1)",
+        "shouldDehydrate": "منطق التجفيف المخصص"
+      },
+      "returnValue": "قيمة الإرجاع",
+      "detectFetchMode": {
+        "description": "يكتشف تلقائيًا وضع العرض الحالي."
+      },
+      "returnValues": "قيم الإرجاع",
+      "modes": {
+        "ssr": "العرض من جانب الخادم (افتراضي)",
+        "isr": "إعادة الإنشاء الثابتة التدريجية",
+        "static": "إنشاء الموقع الثابت (وقت البناء)",
+        "csr": "العرض من جانب العميل"
+      },
+      "components": "المكونات",
+      "usage": "الاستخدام",
+      "features": "الميزات",
+      "queryProvider": {
+        "description": "مكون الموفر الجذري الذي يعد عميل React Query.",
+        "feature1": "ينشئ مثيل QueryClient منفرد",
+        "feature2": "يمكّن React Query DevTools في التطوير",
+        "feature3": "يكوّن الإعدادات الافتراضية المثلى للترطيب"
+      },
+      "props": "الخصائص",
+      "hydrateClient": {
+        "description": "مكون العميل لترطيب الاستعلامات.",
+        "stateProp": "الحالة المجففة من الخادم",
+        "childrenProp": "المكونات الفرعية المراد ترطيبها"
+      },
+      "withHydration": {
+        "description": "مكون من رتبة أعلى للترطيب التلقائي."
+      },
+      "typeDefinitions": "تعريفات الأنواع"
+    },
+    "examples": {
+      "seoTitle": "أمثلة - next-hydrate",
+      "seoDescription": "أمثلة الاستخدام الشائعة والأنماط",
+      "title": "أمثلة",
+      "basicSSR": {
+        "title": "مثال SSR أساسي",
+        "description": "عرض بسيط من جانب الخادم مع جلب البيانات مسبقًا:"
+      },
+      "multipleQueries": {
+        "title": "استعلامات متعددة",
+        "description": "جلب استعلامات متعددة مسبقًا بالتوازي:"
+      },
+      "isr": {
+        "title": "ISR (إعادة الإنشاء الثابتة التدريجية)",
+        "description": "تمكين ISR مع إعادة التحقق:"
+      },
+      "conditionalHydration": {
+        "title": "الترطيب الشرطي",
+        "description": "تخطي الترطيب لاستعلامات محددة:"
+      },
+      "payloadControl": {
+        "title": "التحكم المخصص في الحمولة",
+        "description": "التحكم في البيانات التي يتم ترطيبها:"
+      },
+      "infiniteQuery": {
+        "title": "الاستعلام اللانهائي",
+        "description": "ترطيب الصفحات الأولية للاستعلام اللانهائي:"
+      },
+      "errorHandling": {
+        "title": "معالجة الأخطاء",
+        "description": "معالجة الأخطاء بأناقة:"
+      },
+      "withAuth": {
+        "title": "مع المصادقة",
+        "description": "معالجة الطلبات المصادق عليها:"
+      }
     }
   }
 }

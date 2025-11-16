@@ -1,10 +1,12 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 import DocLayout from '../../components/DocLayout'
 import CodeBlock from '../../components/CodeBlock'
 import SEO from '../../components/SEO'
 
 const ApiPage = () => {
+  const { t } = useTranslation()
   const getHydrationPropsSignature = `async function getHydrationProps<TData = unknown>(
   options: HydrationOptions<TData>
 ): Promise<HydrationProps>`
@@ -48,27 +50,27 @@ const ApiPage = () => {
   return (
     <>
       <SEO
-        title="API Reference - next-hydrate"
-        description="Complete API reference for next-hydrate"
+        title={t('docs.api.seoTitle')}
+        description={t('docs.api.seoDescription')}
         pathname="/docs/api"
       />
       <DocLayout>
-        <h1>API Reference</h1>
+        <h1>{t('docs.api.title')}</h1>
 
-        <h2>Core Functions</h2>
+        <h2>{t('docs.api.coreFunctions')}</h2>
 
         <h3>getHydrationProps()</h3>
-        <p>Prefetches queries on the server and returns dehydrated state for client hydration.</p>
+        <p>{t('docs.api.getHydrationProps.description')}</p>
         <CodeBlock code={getHydrationPropsSignature} language="typescript" title="Function Signature" />
 
-        <h4>Parameters</h4>
+        <h4>{t('docs.api.parameters')}</h4>
         <table>
           <thead>
             <tr>
-              <th>Parameter</th>
-              <th>Type</th>
-              <th>Default</th>
-              <th>Description</th>
+              <th>{t('docs.api.table.parameter')}</th>
+              <th>{t('docs.api.table.type')}</th>
+              <th>{t('docs.api.table.default')}</th>
+              <th>{t('docs.api.table.description')}</th>
             </tr>
           </thead>
           <tbody>
@@ -80,7 +82,7 @@ const ApiPage = () => {
                 <code>QueryConfig&lt;TData&gt;[]</code>
               </td>
               <td>-</td>
-              <td>Array of query configurations to prefetch</td>
+              <td>{t('docs.api.params.queries')}</td>
             </tr>
             <tr>
               <td>
@@ -89,8 +91,8 @@ const ApiPage = () => {
               <td>
                 <code>FetchMode</code>
               </td>
-              <td>auto-detected</td>
-              <td>Override automatic fetch mode detection</td>
+              <td>{t('docs.api.params.fetchMode.default')}</td>
+              <td>{t('docs.api.params.fetchMode.description')}</td>
             </tr>
             <tr>
               <td>
@@ -102,7 +104,7 @@ const ApiPage = () => {
               <td>
                 <code>undefined</code>
               </td>
-              <td>ISR revalidation time in seconds</td>
+              <td>{t('docs.api.params.revalidate')}</td>
             </tr>
             <tr>
               <td>
@@ -114,7 +116,7 @@ const ApiPage = () => {
               <td>
                 <code>6</code>
               </td>
-              <td>Maximum number of parallel fetches</td>
+              <td>{t('docs.api.params.concurrency')}</td>
             </tr>
             <tr>
               <td>
@@ -126,7 +128,7 @@ const ApiPage = () => {
               <td>
                 <code>200</code>
               </td>
-              <td>Maximum payload size before CSR fallback</td>
+              <td>{t('docs.api.params.maxPayloadKB')}</td>
             </tr>
             <tr>
               <td>
@@ -138,7 +140,7 @@ const ApiPage = () => {
               <td>
                 <code>NODE_ENV !== "production"</code>
               </td>
-              <td>Enable development logging</td>
+              <td>{t('docs.api.params.devLog')}</td>
             </tr>
           </tbody>
         </table>
@@ -147,10 +149,10 @@ const ApiPage = () => {
         <table>
           <thead>
             <tr>
-              <th>Property</th>
-              <th>Type</th>
-              <th>Required</th>
-              <th>Description</th>
+              <th>{t('docs.api.table.property')}</th>
+              <th>{t('docs.api.table.type')}</th>
+              <th>{t('docs.api.table.required')}</th>
+              <th>{t('docs.api.table.description')}</th>
             </tr>
           </thead>
           <tbody>
@@ -161,8 +163,8 @@ const ApiPage = () => {
               <td>
                 <code>QueryKey</code>
               </td>
-              <td>Yes</td>
-              <td>React Query cache key</td>
+              <td>{t('docs.api.yes')}</td>
+              <td>{t('docs.api.queryConfig.key')}</td>
             </tr>
             <tr>
               <td>
@@ -171,8 +173,8 @@ const ApiPage = () => {
               <td>
                 <code>() =&gt; Promise&lt;TData&gt;</code>
               </td>
-              <td>Yes</td>
-              <td>Async function to fetch data</td>
+              <td>{t('docs.api.yes')}</td>
+              <td>{t('docs.api.queryConfig.fetchFn')}</td>
             </tr>
             <tr>
               <td>
@@ -181,9 +183,9 @@ const ApiPage = () => {
               <td>
                 <code>boolean</code>
               </td>
-              <td>No</td>
+              <td>{t('docs.api.no')}</td>
               <td>
-                Whether to include in hydration (default: <code>true</code>)
+                {t('docs.api.queryConfig.hydrate')} (<code>true</code>)
               </td>
             </tr>
             <tr>
@@ -193,9 +195,9 @@ const ApiPage = () => {
               <td>
                 <code>number</code>
               </td>
-              <td>No</td>
+              <td>{t('docs.api.no')}</td>
               <td>
-                Number of pages for infinite queries (default: <code>1</code>)
+                {t('docs.api.queryConfig.pagesToHydrate')} (<code>1</code>)
               </td>
             </tr>
             <tr>
@@ -205,25 +207,25 @@ const ApiPage = () => {
               <td>
                 <code>(data: TData) =&gt; boolean</code>
               </td>
-              <td>No</td>
-              <td>Custom dehydration logic</td>
+              <td>{t('docs.api.no')}</td>
+              <td>{t('docs.api.queryConfig.shouldDehydrate')}</td>
             </tr>
           </tbody>
         </table>
 
-        <h4>Return Value</h4>
+        <h4>{t('docs.api.returnValue')}</h4>
         <CodeBlock code={hydrationPropsInterface} language="typescript" />
 
         <h3>detectFetchMode()</h3>
-        <p>Automatically detects the current rendering mode.</p>
+        <p>{t('docs.api.detectFetchMode.description')}</p>
         <CodeBlock code={detectFetchModeSignature} language="typescript" />
 
-        <h4>Return Values</h4>
+        <h4>{t('docs.api.returnValues')}</h4>
         <table>
           <thead>
             <tr>
-              <th>Mode</th>
-              <th>Description</th>
+              <th>{t('docs.api.table.mode')}</th>
+              <th>{t('docs.api.table.description')}</th>
             </tr>
           </thead>
           <tbody>
@@ -231,66 +233,65 @@ const ApiPage = () => {
               <td>
                 <code>"ssr"</code>
               </td>
-              <td>Server-side rendering (default)</td>
+              <td>{t('docs.api.modes.ssr')}</td>
             </tr>
             <tr>
               <td>
                 <code>"isr"</code>
               </td>
-              <td>Incremental static regeneration</td>
+              <td>{t('docs.api.modes.isr')}</td>
             </tr>
             <tr>
               <td>
                 <code>"static"</code>
               </td>
-              <td>Static site generation (build time)</td>
+              <td>{t('docs.api.modes.static')}</td>
             </tr>
             <tr>
               <td>
                 <code>"csr"</code>
               </td>
-              <td>Client-side rendering</td>
+              <td>{t('docs.api.modes.csr')}</td>
             </tr>
           </tbody>
         </table>
 
-        <h2>Components</h2>
+        <h2>{t('docs.api.components')}</h2>
 
         <h3>QueryProvider</h3>
-        <p>Root provider component that sets up React Query client.</p>
-        <CodeBlock code={queryProviderExample} language="tsx" title="Usage" />
+        <p>{t('docs.api.queryProvider.description')}</p>
+        <CodeBlock code={queryProviderExample} language="tsx" title={t('docs.api.usage')} />
 
         <p>
-          <strong>Features:</strong>
+          <strong>{t('docs.api.features')}:</strong>
         </p>
         <ul>
-          <li>Creates singleton QueryClient instance</li>
-          <li>Enables React Query DevTools in development</li>
-          <li>Configures optimal defaults for hydration</li>
+          <li>{t('docs.api.queryProvider.feature1')}</li>
+          <li>{t('docs.api.queryProvider.feature2')}</li>
+          <li>{t('docs.api.queryProvider.feature3')}</li>
         </ul>
 
         <h3>HydrateClient</h3>
-        <p>Client component for hydrating queries.</p>
-        <CodeBlock code={hydrateClientExample} language="tsx" title="Usage" />
+        <p>{t('docs.api.hydrateClient.description')}</p>
+        <CodeBlock code={hydrateClientExample} language="tsx" title={t('docs.api.usage')} />
 
         <p>
-          <strong>Props:</strong>
+          <strong>{t('docs.api.props')}:</strong>
         </p>
         <ul>
           <li>
-            <code>state</code>: <code>DehydratedState | null | undefined</code> - Dehydrated state from
-            server
+            <code>state</code>: <code>DehydratedState | null | undefined</code> - {t('docs.api.hydrateClient.stateProp')}
           </li>
           <li>
-            <code>children</code>: <code>ReactNode</code> - Child components to hydrate
+            <code>children</code>: <code>ReactNode</code> - {t('docs.api.hydrateClient.childrenProp')}
           </li>
         </ul>
 
         <h3>withHydration()</h3>
-        <p>Higher-order component for automatic hydration.</p>
+        <p>{t('docs.api.withHydration.description')}</p>
         <CodeBlock code={withHydrationSignature} language="typescript" />
 
-        <h2>Type Definitions</h2>
+        <h2>{t('docs.api.typeDefinitions')}</h2>
 
         <h3>HydrationOptions</h3>
         <CodeBlock code={hydrationOptionsInterface} language="typescript" />

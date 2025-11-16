@@ -18,8 +18,8 @@ describe('Cross-Environment Compatibility', () => {
       expect(mode).toBe('csr');
     });
 
-    it('QueryProvider works in browser environment', () => {
-      const { QueryProvider } = require('../src/providers/QueryProvider.js');
+    it('QueryProvider works in browser environment', async () => {
+      const { QueryProvider } = await import('../src/providers/QueryProvider.js');
 
       expect(() => {
         // In real usage, this would be JSX
@@ -28,8 +28,8 @@ describe('Cross-Environment Compatibility', () => {
       }).not.toThrow();
     });
 
-    it('HydrateClient works with null state in browser', () => {
-      const { HydrateClient } = require('../src/HydrateClient.js');
+    it('HydrateClient works with null state in browser', async () => {
+      const { HydrateClient } = await import('../src/HydrateClient.js');
 
       expect(() => {
         // In real usage, this would be JSX
@@ -115,8 +115,8 @@ describe('Cross-Environment Compatibility', () => {
       expect(result.dehydratedState).toBeNull();
     });
 
-    it('handles malformed dehydrated state', () => {
-      const { HydrateClient } = require('../src/HydrateClient.js');
+    it('handles malformed dehydrated state', async () => {
+      const { HydrateClient } = await import('../src/HydrateClient.js');
 
       expect(() => {
         // Test with invalid state
@@ -125,13 +125,11 @@ describe('Cross-Environment Compatibility', () => {
       }).not.toThrow();
     });
 
-    it('handles missing QueryClient gracefully', () => {
+    it('handles missing QueryClient gracefully', async () => {
       // Test library behavior when QueryClient is not available
-      expect(() => {
-        const { getQueryClient } = require('../src/getQueryClient.js');
-        const client = getQueryClient();
-        expect(client).toBeDefined();
-      }).not.toThrow();
+      const { getQueryClient } = await import('../src/getQueryClient.js');
+      const client = getQueryClient();
+      expect(client).toBeDefined();
     });
   });
 
@@ -197,19 +195,18 @@ describe('Cross-Environment Compatibility', () => {
   });
 
   describe('TypeScript and Build Compatibility', () => {
-    it('exports all expected types', () => {
-      const types = require('../src/types.ts');
+    it('exports all expected types', async () => {
+      const types = await import('../src/types.js');
 
-      expect(types).toHaveProperty('WithDehydratedState');
-      expect(types).toHaveProperty('HydratableComponentProps');
+      // Types are exported as types, not runtime values
+      // This test verifies the module can be imported successfully
+      expect(types).toBeDefined();
     });
 
-    it('has proper TypeScript declarations', () => {
+    it('has proper TypeScript declarations', async () => {
       // This would be tested by TypeScript compiler in real scenarios
-      expect(() => {
-        const { detectFetchMode } = require('../src/detectFetchMode.js');
-        expect(typeof detectFetchMode).toBe('function');
-      }).not.toThrow();
+      const { detectFetchMode } = await import('../src/detectFetchMode.js');
+      expect(typeof detectFetchMode).toBe('function');
     });
   });
 

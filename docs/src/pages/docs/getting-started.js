@@ -1,88 +1,84 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 import DocLayout from '../../components/DocLayout'
 import SEO from '../../components/SEO'
 
 const GettingStartedPage = () => {
+  const { t } = useTranslation()
+
   return (
     <>
       <SEO
-        title="Getting Started - next-hydrate"
-        description="Learn how to get started with next-hydrate"
+        title={t('docs.gettingStarted.seoTitle')}
+        description={t('docs.gettingStarted.seoDescription')}
         pathname="/docs/getting-started"
       />
       <DocLayout>
-        <h1>Getting Started</h1>
+        <h1>{t('docs.gettingStarted.title')}</h1>
 
-        <h2>Introduction</h2>
+        <h2>{t('docs.gettingStarted.introduction')}</h2>
         <p>
-          <code>next-hydrate</code> is a powerful library that provides universal hydration utilities for
-          Next.js App Router applications using React Query v5. It automatically handles the complexity of
-          server-side rendering, incremental static regeneration, static site generation, and client-side
-          rendering.
+          {t('docs.gettingStarted.intro.description')}
         </p>
 
-        <h2>Why next-hydrate?</h2>
+        <h2>{t('docs.gettingStarted.whyNextHydrate')}</h2>
         <p>
-          Managing React Query state across different Next.js rendering strategies can be challenging.{' '}
-          <code>next-hydrate</code> solves this by:
+          {t('docs.gettingStarted.why.description')}
         </p>
         <ul>
           <li>
-            <strong>Automatic Detection</strong>: Automatically detects whether you're in SSR, ISR, SSG, or
-            CSR mode
+            <strong>{t('docs.gettingStarted.why.automaticDetection.title')}</strong>: {t('docs.gettingStarted.why.automaticDetection.description')}
           </li>
           <li>
-            <strong>Performance Optimized</strong>: Built-in concurrency control, payload size limits, and
-            memory optimization
+            <strong>{t('docs.gettingStarted.why.performanceOptimized.title')}</strong>: {t('docs.gettingStarted.why.performanceOptimized.description')}
           </li>
           <li>
-            <strong>Type-Safe</strong>: Full TypeScript support with comprehensive type definitions
+            <strong>{t('docs.gettingStarted.why.typeSafe.title')}</strong>: {t('docs.gettingStarted.why.typeSafe.description')}
           </li>
           <li>
-            <strong>Developer Friendly</strong>: Simple API with powerful features and integrated logging
+            <strong>{t('docs.gettingStarted.why.developerFriendly.title')}</strong>: {t('docs.gettingStarted.why.developerFriendly.description')}
           </li>
         </ul>
 
-        <h2>Key Features</h2>
+        <h2>{t('docs.gettingStarted.keyFeatures')}</h2>
 
-        <h3>Universal Rendering Support</h3>
-        <p>Works seamlessly across all Next.js rendering modes:</p>
+        <h3>{t('docs.gettingStarted.universalRendering.title')}</h3>
+        <p>{t('docs.gettingStarted.universalRendering.description')}</p>
         <ul>
           <li>
-            <strong>SSR</strong> (Server-Side Rendering)
+            <strong>SSR</strong> ({t('docs.gettingStarted.universalRendering.ssr')})
           </li>
           <li>
-            <strong>ISR</strong> (Incremental Static Regeneration)
+            <strong>ISR</strong> ({t('docs.gettingStarted.universalRendering.isr')})
           </li>
           <li>
-            <strong>SSG</strong> (Static Site Generation)
+            <strong>SSG</strong> ({t('docs.gettingStarted.universalRendering.ssg')})
           </li>
           <li>
-            <strong>CSR</strong> (Client-Side Rendering)
+            <strong>CSR</strong> ({t('docs.gettingStarted.universalRendering.csr')})
           </li>
         </ul>
 
-        <h3>Performance First</h3>
+        <h3>{t('docs.gettingStarted.performanceFirst.title')}</h3>
         <ul>
-          <li>Concurrency control for parallel fetches</li>
-          <li>Payload size monitoring with automatic CSR fallback</li>
-          <li>Memory-efficient server-side QueryClient</li>
-          <li>Query deduplication</li>
+          <li>{t('docs.gettingStarted.performanceFirst.concurrency')}</li>
+          <li>{t('docs.gettingStarted.performanceFirst.payloadSize')}</li>
+          <li>{t('docs.gettingStarted.performanceFirst.memoryEfficient')}</li>
+          <li>{t('docs.gettingStarted.performanceFirst.deduplication')}</li>
         </ul>
 
-        <h3>Developer Experience</h3>
+        <h3>{t('docs.gettingStarted.developerExperience.title')}</h3>
         <ul>
-          <li>TypeScript-first with excellent IDE support</li>
-          <li>Integrated logging and debugging</li>
-          <li>React Query DevTools support</li>
-          <li>Comprehensive error handling</li>
+          <li>{t('docs.gettingStarted.developerExperience.typescript')}</li>
+          <li>{t('docs.gettingStarted.developerExperience.logging')}</li>
+          <li>{t('docs.gettingStarted.developerExperience.devTools')}</li>
+          <li>{t('docs.gettingStarted.developerExperience.errorHandling')}</li>
         </ul>
 
-        <h2>Next Steps</h2>
+        <h2>{t('docs.gettingStarted.nextSteps.title')}</h2>
         <p>
-          Ready to get started? Check out the <a href="/docs/installation">Installation</a> guide or jump
-          straight to the <a href="/docs/quick-start">Quick Start</a> tutorial.
+          {t('docs.gettingStarted.nextSteps.description')}
         </p>
       </DocLayout>
     </>

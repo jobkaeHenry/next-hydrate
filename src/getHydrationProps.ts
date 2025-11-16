@@ -3,7 +3,37 @@ import { detectFetchMode } from "./detectFetchMode.js";
 import type { QueryConfig, HydrationOptions, HydrationProps } from "./types.js";
 import { byteSize, bytesToKB, runWithConcurrency } from "./utils/helpers.js";
 import { logHydration, logError } from "./utils/logger.js";
+import { HydrationError } from "./errors.js";
 
+/**
+ * Prefetches queries on the server and returns dehydrated state for client hydration
+ *
+ * @template TData - The data type returned by queries
+ * @param options - Configuration options for hydration
+ * @returns Promise resolving to hydration props including dehydrated state
+ *
+ * @remarks
+ * This function automatically detects the rendering mode (SSR/ISR/Static/CSR) and
+ * prefetches queries accordingly. Failed queries are gracefully handled and won't
+ * block other queries from being hydrated.
+ *
+ * @example
+ * ```tsx
+ * // In a server component
+ * const hydration = await getHydrationProps({
+ *   queries: [
+ *     {
+ *       key: ['posts'],
+ *       fetchFn: async () => fetch('/api/posts').then(r => r.json()),
+ *     }
+ *   ],
+ *   concurrency: 6,
+ *   maxPayloadKB: 200,
+ * });
+ *
+ * return <PostsClient dehydratedState={hydration.dehydratedState} />;
+ * ```
+ */
 export async function getHydrationProps<TData = unknown>({
   queries,
   fetchMode: overrideFetchMode,
@@ -47,18 +77,48 @@ export async function getHydrationProps<TData = unknown>({
 
       return async () => {
         try {
-          const pages = Math.max(1, query.pagesToHydrate ?? 1);
-          for (let i = 0; i < pages; i += 1) {
+          // Check if this is an infinite query
+          const isInfiniteQuery =
+            query.pagesToHydrate &&
+            query.pagesToHydrate > 1 &&
+            query.initialPageParam !== undefined &&
+            query.getNextPageParam !== undefined;
+
+          if (isInfiniteQuery) {
+            // Use prefetchInfiniteQuery for infinite queries
+            await qc.prefetchInfiniteQuery({
+              queryKey: query.key,
+              queryFn: async ({ pageParam }) => {
+                // Call fetchFn with pageParam context if needed
+                // Note: fetchFn should handle pageParam internally
+                return query.fetchFn();
+              },
+              initialPageParam: query.initialPageParam,
+              getNextPageParam: query.getNextPageParam,
+              pages: query.pagesToHydrate,
+            });
+          } else {
+            // Regular query prefetch
             await qc.prefetchQuery({
               queryKey: query.key,
               queryFn: query.fetchFn,
             });
           }
         } catch (error) {
+          const hydrationError = new HydrationError(
+            `Failed to prefetch query. This query will fallback to CSR.`,
+            query.key,
+            error,
+            devLog
+          );
+
           if (devLog) {
             logError(error, `Prefetch failed for query ${keyStr}`);
+            console.warn(hydrationError.getDetailedMessage());
           }
-          throw error;
+
+          // Don't throw - allow other queries to succeed
+          // The query will simply not be in the dehydrated state
         }
       };
     })
@@ -76,10 +136,21 @@ export async function getHydrationProps<TData = unknown>({
     const dehydrated = dehydrate(qc, {
       shouldDehydrateQuery: (query) => {
         if (query.state.status !== "success") return false;
-        const data = query.state.data as TData;
+
         const keyStr = JSON.stringify(query.queryKey);
         const config = queryMap.get(keyStr);
-        return config?.shouldDehydrate ? config.shouldDehydrate(data) : true;
+
+        // If no custom shouldDehydrate function, include by default
+        if (!config?.shouldDehydrate) return true;
+
+        // Safely call shouldDehydrate with the data
+        // Note: query.state.data should match TData if the query succeeded
+        try {
+          return config.shouldDehydrate(query.state.data as TData);
+        } catch {
+          // If shouldDehydrate throws, don't dehydrate this query
+          return false;
+        }
       },
     });
 

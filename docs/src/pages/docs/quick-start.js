@@ -1,10 +1,12 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 import DocLayout from '../../components/DocLayout'
 import CodeBlock from '../../components/CodeBlock'
 import SEO from '../../components/SEO'
 
 const QuickStartPage = () => {
+  const { t } = useTranslation()
   const layoutCode = `// app/layout.tsx
 import { QueryProvider } from '@jobkaehenry/next-hydrate';
 
@@ -85,57 +87,56 @@ export default function PostsClient({ dehydratedState }) {
   return (
     <>
       <SEO
-        title="Quick Start - next-hydrate"
-        description="Get up and running with next-hydrate in minutes"
+        title={t('docs.quickStart.seoTitle')}
+        description={t('docs.quickStart.seoDescription')}
         pathname="/docs/quick-start"
       />
       <DocLayout>
-        <h1>Quick Start</h1>
+        <h1>{t('docs.quickStart.title')}</h1>
 
-        <h2>Step 1: Setup Query Provider</h2>
+        <h2>{t('docs.quickStart.step1.title')}</h2>
         <p>
-          First, wrap your application with the <code>QueryProvider</code> in your root layout:
+          {t('docs.quickStart.step1.description')}
         </p>
         <CodeBlock code={layoutCode} language="tsx" title="app/layout.tsx" />
 
-        <h2>Step 2: Server-Side Data Fetching</h2>
+        <h2>{t('docs.quickStart.step2.title')}</h2>
         <p>
-          In your server component, use <code>getHydrationProps</code> to prefetch data:
+          {t('docs.quickStart.step2.description')}
         </p>
         <CodeBlock code={serverCode} language="tsx" title="app/posts/page.tsx" />
 
-        <h2>Step 3: Client Component</h2>
-        <p>Create a client component that uses the hydrated data:</p>
+        <h2>{t('docs.quickStart.step3.title')}</h2>
+        <p>{t('docs.quickStart.step3.description')}</p>
         <CodeBlock code={clientCode} language="tsx" title="app/posts/PostsClient.tsx" />
 
-        <h2>Alternative: Using HydrateClient</h2>
+        <h2>{t('docs.quickStart.alternative.title')}</h2>
         <p>
-          If you prefer composition over HOCs, you can use <code>HydrateClient</code> directly:
+          {t('docs.quickStart.alternative.description')}
         </p>
         <CodeBlock code={alternativeCode} language="tsx" title="app/posts/PostsClient.tsx" />
 
-        <h2>That's It!</h2>
+        <h2>{t('docs.quickStart.thatsIt.title')}</h2>
         <p>
-          You've successfully set up <code>next-hydrate</code> in your Next.js application. The library
-          will automatically:
+          {t('docs.quickStart.thatsIt.description')}
         </p>
         <ul>
-          <li>Detect the rendering mode (SSR/ISR/SSG/CSR)</li>
-          <li>Prefetch queries on the server</li>
-          <li>Hydrate the client with server data</li>
-          <li>Fall back to CSR if the payload is too large</li>
+          <li>{t('docs.quickStart.thatsIt.feature1')}</li>
+          <li>{t('docs.quickStart.thatsIt.feature2')}</li>
+          <li>{t('docs.quickStart.thatsIt.feature3')}</li>
+          <li>{t('docs.quickStart.thatsIt.feature4')}</li>
         </ul>
 
-        <h2>What's Next?</h2>
+        <h2>{t('docs.quickStart.whatsNext.title')}</h2>
         <ul>
           <li>
-            Learn about <a href="/docs/fetch-modes">Fetch Modes</a>
+            {t('docs.quickStart.whatsNext.fetchModes')}
           </li>
           <li>
-            Explore the <a href="/docs/api">API Reference</a>
+            {t('docs.quickStart.whatsNext.apiReference')}
           </li>
           <li>
-            Check out <a href="/docs/examples">Examples</a> for common use cases
+            {t('docs.quickStart.whatsNext.examples')}
           </li>
         </ul>
       </DocLayout>

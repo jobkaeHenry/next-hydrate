@@ -75,7 +75,7 @@
 }
 
 .language-option.active {
-  background-color: #e8f0fe;
+  background-color: #e6f7fa;
   color: var(--primary-color);
   font-weight: 600;
 }

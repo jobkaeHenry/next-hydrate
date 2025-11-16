@@ -1,31 +1,219 @@
 {
   "docs": {
     "gettingStarted": {
+      "seoTitle": "入门指南 - next-hydrate",
+      "seoDescription": "了解如何开始使用 next-hydrate",
       "title": "入门指南",
-      "intro": "介绍",
-      "why": "为什么选择 next-hydrate？",
-      "keyFeatures": "主要功能",
-      "universalRendering": "通用渲染支持",
-      "performanceFirst": "性能优先",
-      "developerExperience": "开发者体验",
-      "nextSteps": "下一步"
+      "introduction": "简介",
+      "intro": {
+        "description": "next-hydrate 是一个强大的库，为使用 React Query v5 的 Next.js App Router 应用程序提供通用水合工具。它自动处理服务器端渲染、增量静态再生成、静态站点生成和客户端渲染的复杂性。"
+      },
+      "whyNextHydrate": "为什么选择 next-hydrate？",
+      "why": {
+        "description": "在不同的 Next.js 渲染策略中管理 React Query 状态可能具有挑战性。next-hydrate 通过以下方式解决了这个问题：",
+        "automaticDetection": {
+          "title": "自动检测",
+          "description": "自动检测您是处于 SSR、ISR、SSG 还是 CSR 模式"
+        },
+        "performanceOptimized": {
+          "title": "性能优化",
+          "description": "内置并发控制、有效负载大小限制和内存优化"
+        },
+        "typeSafe": {
+          "title": "类型安全",
+          "description": "完整的 TypeScript 支持和全面的类型定义"
+        },
+        "developerFriendly": {
+          "title": "开发者友好",
+          "description": "简单的 API，强大的功能和集成的日志记录"
+        }
+      },
+      "keyFeatures": "主要特性",
+      "universalRendering": {
+        "title": "通用渲染支持",
+        "description": "无缝支持所有 Next.js 渲染模式：",
+        "ssr": "服务器端渲染",
+        "isr": "增量静态再生成",
+        "ssg": "静态站点生成",
+        "csr": "客户端渲染"
+      },
+      "performanceFirst": {
+        "title": "性能优先",
+        "concurrency": "并发控制用于并行获取",
+        "payloadSize": "有效负载大小监控并自动回退到 CSR",
+        "memoryEfficient": "内存高效的服务器端 QueryClient",
+        "deduplication": "查询去重"
+      },
+      "developerExperience": {
+        "title": "开发者体验",
+        "typescript": "TypeScript 优先，具有出色的 IDE 支持",
+        "logging": "集成的日志记录和调试",
+        "devTools": "React Query DevTools 支持",
+        "errorHandling": "全面的错误处理"
+      },
+      "nextSteps": {
+        "title": "下一步",
+        "description": "准备开始了吗？查看安装指南或直接跳转到快速入门教程。"
+      }
     },
     "installation": {
+      "seoTitle": "安装 - next-hydrate",
+      "seoDescription": "在您的 Next.js 项目中安装 next-hydrate",
       "title": "安装",
-      "prerequisites": "先决条件",
+      "prerequisites": "前置要求",
+      "prerequisitesDescription": "在安装 next-hydrate 之前，请确保您具备以下条件：",
+      "orHigher": "或更高版本",
       "packageInstallation": "包安装",
-      "peerDependencies": "对等依赖",
+      "packageDescription": "使用您喜欢的包管理器安装 next-hydrate 及其对等依赖项：",
+      "peerDependencies": "对等依赖项",
+      "peerDependenciesDescription": "以下包是必需的对等依赖项：",
+      "peerDependenciesNote": "如果您尚未安装这些包，请确保在使用 next-hydrate 之前安装它们。",
       "verifyInstallation": "验证安装",
-      "nextSteps": "下一步"
+      "verifyDescription": "要验证安装是否成功，您可以在代码中导入该库：",
+      "verifySuccess": "如果导入没有错误，您就可以开始使用 next-hydrate 了！",
+      "nextSteps": "下一步",
+      "nextStepsDescription": "现在您已经安装了 next-hydrate，请继续阅读快速入门指南以了解如何在应用程序中使用它。"
     },
     "quickStart": {
-      "title": "快速开始",
-      "step1": "步骤1：设置 Query Provider",
-      "step2": "步骤2：服务器端数据获取",
-      "step3": "步骤3：客户端组件",
-      "alternative": "替代方案：使用 HydrateClient",
-      "thatsIt": "完成！",
-      "whatNext": "接下来做什么？"
+      "seoTitle": "快速入门 - next-hydrate",
+      "seoDescription": "几分钟内开始使用 next-hydrate",
+      "title": "快速入门",
+      "step1": {
+        "title": "步骤 1：设置 Query Provider",
+        "description": "首先，在根布局中使用 QueryProvider 包装您的应用程序："
+      },
+      "step2": {
+        "title": "步骤 2：服务器端数据获取",
+        "description": "在服务器组件中，使用 getHydrationProps 预取数据："
+      },
+      "step3": {
+        "title": "步骤 3：客户端组件",
+        "description": "创建一个使用水合数据的客户端组件："
+      },
+      "alternative": {
+        "title": "替代方案：使用 HydrateClient",
+        "description": "如果您更喜欢组合而不是 HOC，可以直接使用 HydrateClient："
+      },
+      "thatsIt": {
+        "title": "就是这样！",
+        "description": "您已成功在 Next.js 应用程序中设置了 next-hydrate。该库将自动：",
+        "feature1": "检测渲染模式（SSR/ISR/SSG/CSR）",
+        "feature2": "在服务器上预取查询",
+        "feature3": "使用服务器数据水合客户端",
+        "feature4": "如果有效负载过大，则回退到 CSR"
+      },
+      "whatsNext": {
+        "title": "下一步是什么？",
+        "fetchModes": "了解获取模式",
+        "apiReference": "探索 API 参考",
+        "examples": "查看常见用例的示例"
+      }
+    },
+    "api": {
+      "seoTitle": "API 参考 - next-hydrate",
+      "seoDescription": "next-hydrate 的完整 API 参考",
+      "title": "API 参考",
+      "coreFunctions": "核心函数",
+      "getHydrationProps": {
+        "description": "在服务器上预取查询并返回用于客户端水合的脱水状态。"
+      },
+      "parameters": "参数",
+      "table": {
+        "parameter": "参数",
+        "type": "类型",
+        "default": "默认值",
+        "description": "描述",
+        "property": "属性",
+        "required": "必需",
+        "mode": "模式"
+      },
+      "params": {
+        "queries": "要预取的查询配置数组",
+        "fetchMode": {
+          "default": "自动检测",
+          "description": "覆盖自动获取模式检测"
+        },
+        "revalidate": "ISR 重新验证时间（秒）",
+        "concurrency": "最大并行获取数",
+        "maxPayloadKB": "CSR 回退前的最大有效负载大小",
+        "devLog": "启用开发日志"
+      },
+      "yes": "是",
+      "no": "否",
+      "queryConfig": {
+        "key": "React Query 缓存键",
+        "fetchFn": "获取数据的异步函数",
+        "hydrate": "是否包含在水合中（默认：true）",
+        "pagesToHydrate": "无限查询的页面数（默认：1）",
+        "shouldDehydrate": "自定义脱水逻辑"
+      },
+      "returnValue": "返回值",
+      "detectFetchMode": {
+        "description": "自动检测当前渲染模式。"
+      },
+      "returnValues": "返回值",
+      "modes": {
+        "ssr": "服务器端渲染（默认）",
+        "isr": "增量静态再生成",
+        "static": "静态站点生成（构建时）",
+        "csr": "客户端渲染"
+      },
+      "components": "组件",
+      "usage": "用法",
+      "features": "特性",
+      "queryProvider": {
+        "description": "设置 React Query 客户端的根提供程序组件。",
+        "feature1": "创建单例 QueryClient 实例",
+        "feature2": "在开发环境中启用 React Query DevTools",
+        "feature3": "为水合配置最佳默认值"
+      },
+      "props": "属性",
+      "hydrateClient": {
+        "description": "用于水合查询的客户端组件。",
+        "stateProp": "来自服务器的脱水状态",
+        "childrenProp": "要水合的子组件"
+      },
+      "withHydration": {
+        "description": "用于自动水合的高阶组件。"
+      },
+      "typeDefinitions": "类型定义"
+    },
+    "examples": {
+      "seoTitle": "示例 - next-hydrate",
+      "seoDescription": "常见用法示例和模式",
+      "title": "示例",
+      "basicSSR": {
+        "title": "基本 SSR 示例",
+        "description": "具有数据预取的简单服务器端渲染："
+      },
+      "multipleQueries": {
+        "title": "多个查询",
+        "description": "并行预取多个查询："
+      },
+      "isr": {
+        "title": "ISR（增量静态再生成）",
+        "description": "启用带重新验证的 ISR："
+      },
+      "conditionalHydration": {
+        "title": "条件水合",
+        "description": "跳过特定查询的水合："
+      },
+      "payloadControl": {
+        "title": "自定义有效负载控制",
+        "description": "控制哪些数据被水合："
+      },
+      "infiniteQuery": {
+        "title": "无限查询",
+        "description": "水合无限查询的初始页面："
+      },
+      "errorHandling": {
+        "title": "错误处理",
+        "description": "优雅地处理错误："
+      },
+      "withAuth": {
+        "title": "使用身份验证",
+        "description": "处理经过身份验证的请求："
+      }
     }
   }
 }

@@ -30,6 +30,20 @@ const TableOfContents = ({ items }) => {
     }
   }, [items])
 
+  const handleClick = (e, id) => {
+    e.preventDefault()
+    const element = document.getElementById(id)
+    if (element) {
+      // 부드러운 스크롤
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+      // URL 업데이트 (선택사항)
+      window.history.pushState(null, '', `#${id}`)
+    }
+  }
+
   if (!items || items.length === 0) {
     return null
   }
@@ -45,7 +59,12 @@ const TableOfContents = ({ items }) => {
               activeId === item.id ? 'active' : ''
             }`}
           >
-            <a href={`#${item.id}`}>{item.text}</a>
+            <a
+              href={`#${item.id}`}
+              onClick={(e) => handleClick(e, item.id)}
+            >
+              {item.text}
+            </a>
           </li>
         ))}
       </ul>

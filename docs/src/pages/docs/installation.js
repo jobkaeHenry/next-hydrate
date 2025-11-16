@@ -1,10 +1,13 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 import DocLayout from '../../components/DocLayout'
 import CodeBlock from '../../components/CodeBlock'
 import SEO from '../../components/SEO'
 
 const InstallationPage = () => {
+  const { t } = useTranslation()
+
   const npmInstall = `npm install @jobkaehenry/next-hydrate @tanstack/react-query @tanstack/react-query-devtools`
 
   const yarnInstall = `yarn add @jobkaehenry/next-hydrate @tanstack/react-query @tanstack/react-query-devtools`
@@ -23,25 +26,25 @@ const InstallationPage = () => {
   return (
     <>
       <SEO
-        title="Installation - next-hydrate"
-        description="Install next-hydrate in your Next.js project"
+        title={t('docs.installation.seoTitle')}
+        description={t('docs.installation.seoDescription')}
         pathname="/docs/installation"
       />
       <DocLayout>
-        <h1>Installation</h1>
+        <h1>{t('docs.installation.title')}</h1>
 
-        <h2>Prerequisites</h2>
-        <p>Before installing <code>next-hydrate</code>, make sure you have the following:</p>
+        <h2>{t('docs.installation.prerequisites')}</h2>
+        <p>{t('docs.installation.prerequisitesDescription')}</p>
         <ul>
-          <li><strong>Node.js</strong> 18.0.0 or higher</li>
-          <li><strong>Next.js</strong> 13.4.0 or higher</li>
-          <li><strong>React</strong> 18.2.0 or higher</li>
-          <li><strong>React Query</strong> v5.0.0 or higher</li>
+          <li><strong>Node.js</strong> 18.0.0 {t('docs.installation.orHigher')}</li>
+          <li><strong>Next.js</strong> 13.4.0 {t('docs.installation.orHigher')}</li>
+          <li><strong>React</strong> 18.2.0 {t('docs.installation.orHigher')}</li>
+          <li><strong>React Query</strong> v5.0.0 {t('docs.installation.orHigher')}</li>
         </ul>
 
-        <h2>Package Installation</h2>
+        <h2>{t('docs.installation.packageInstallation')}</h2>
         <p>
-          Install <code>next-hydrate</code> and its peer dependencies using your preferred package manager:
+          {t('docs.installation.packageDescription')}
         </p>
 
         <h3>npm</h3>
@@ -53,27 +56,25 @@ const InstallationPage = () => {
         <h3>pnpm</h3>
         <CodeBlock code={pnpmInstall} language="bash" />
 
-        <h2>Peer Dependencies</h2>
-        <p>The following packages are required as peer dependencies:</p>
+        <h2>{t('docs.installation.peerDependencies')}</h2>
+        <p>{t('docs.installation.peerDependenciesDescription')}</p>
         <CodeBlock code={peerDependencies} language="json" title="package.json" />
 
         <p>
-          If you don't have these packages installed, make sure to install them before using{' '}
-          <code>next-hydrate</code>.
+          {t('docs.installation.peerDependenciesNote')}
         </p>
 
-        <h2>Verify Installation</h2>
-        <p>To verify that the installation was successful, you can import the library in your code:</p>
+        <h2>{t('docs.installation.verifyInstallation')}</h2>
+        <p>{t('docs.installation.verifyDescription')}</p>
         <CodeBlock code={verifyImport} language="typescript" />
 
         <p>
-          If the import works without errors, you're ready to start using <code>next-hydrate</code>!
+          {t('docs.installation.verifySuccess')}
         </p>
 
-        <h2>Next Steps</h2>
+        <h2>{t('docs.installation.nextSteps')}</h2>
         <p>
-          Now that you have <code>next-hydrate</code> installed, proceed to the{' '}
-          <a href="/docs/quick-start">Quick Start</a> guide to learn how to use it in your application.
+          {t('docs.installation.nextStepsDescription')}
         </p>
       </DocLayout>
     </>

@@ -1,6 +1,7 @@
 :root {
-  --primary-color: #0070f3;
-  --primary-hover: #0051cc;
+  --primary-color: #00a5ba;
+  --primary-hover: #008a9a;
+  --accent-color: #b61a84;
   --secondary-color: #666;
   --text-color: #333;
   --bg-color: #fff;
@@ -26,7 +27,7 @@ body {
 .hero {
   text-align: center;
   padding: 80px 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #b61a84 0%, #00a5ba 100%);
   color: white;
 }
 
@@ -60,12 +61,13 @@ body {
 
 .btn-primary {
   background: white;
-  color: #667eea;
+  color: var(--primary-color);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background: #f0f9fb;
 }
 
 .btn-secondary {
@@ -76,7 +78,7 @@ body {
 
 .btn-secondary:hover {
   background: white;
-  color: #667eea;
+  color: var(--accent-color);
 }
 
 .features {
