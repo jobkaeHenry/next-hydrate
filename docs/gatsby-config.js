@@ -1,9 +1,10 @@
 module.exports = {
+  pathPrefix: `/next-hydrate`,
   siteMetadata: {
     title: `next-hydrate - Universal Hydration for Next.js`,
     description: `Universal hydration utilities for Next.js App Router + React Query v5. Seamless SSR, ISR, SSG, and CSR support with automatic mode detection and performance optimization.`,
     author: `@jobkaehenry`,
-    siteUrl: `https://next-hydrate.dev`,
+    siteUrl: `https://jobkaehenry.github.io`,
     image: `/og-image.png`,
     twitterUsername: `@jobkaehenry`,
     keywords: `nextjs, react-query, tanstack-query, hydration, ssr, isr, ssg, server-side rendering, app router, react, typescript`,
@@ -17,7 +18,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
-        siteUrl: `https://next-hydrate.dev`,
+        siteUrl: `https://jobkaehenry.github.io/next-hydrate`,
         stripQueryString: true,
       },
     },
@@ -57,7 +58,7 @@ module.exports = {
         defaultLanguage: `en`,
         redirect: true,
         generateDefaultLanguagePage: true,
-        siteUrl: `https://next-hydrate.dev`,
+        siteUrl: `https://jobkaehenry.github.io/next-hydrate`,
         i18nextOptions: {
           interpolation: {
             escapeValue: false,
@@ -87,7 +88,7 @@ module.exports = {
             }
           }
         `,
-        resolveSiteUrl: () => `https://next-hydrate.dev`,
+        resolveSiteUrl: () => `https://jobkaehenry.github.io/next-hydrate`,
         resolvePages: ({
           allSitePage: { nodes: allPages },
         }) => {
@@ -122,8 +123,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://next-hydrate.dev',
-        sitemap: 'https://next-hydrate.dev/sitemap-index.xml',
+        host: 'https://jobkaehenry.github.io/next-hydrate',
+        sitemap: 'https://jobkaehenry.github.io/next-hydrate/sitemap-index.xml',
         policy: [
           {
             userAgent: '*',
