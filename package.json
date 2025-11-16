@@ -1,6 +1,6 @@
 {
   "name": "@jobkaehenry/next-hydrate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Universal hydration utilities for Next.js App Router and Tanstack-Query/React v5",
   "type": "module",
   "main": "dist/index.cjs",

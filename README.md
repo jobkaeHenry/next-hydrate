@@ -5,6 +5,7 @@
 [![npm version](https://img.shields.io/npm/v/@jobkaehenry/next-hydrate)](https://www.npmjs.com/package/@jobkaehenry/next-hydrate)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3+-blue.svg)](https://www.typescriptlang.org/)
+[![Documentation](https://img.shields.io/badge/docs-online-brightgreen)](https://jobkaehenry.github.io/next-hydrate/)
 
 ## 🌐 Language / 언어 선택
 
@@ -29,6 +30,8 @@
 10. [License](#10-license)
 
 ### 1. Why this library exists
+
+> **📚 [Full Documentation](https://jobkaehenry.github.io/next-hydrate/)** | [한국어 문서](https://jobkaehenry.github.io/next-hydrate/ko/)
 
 `@jobkaehenry/next-hydrate` keeps React Query caches in sync across every rendering strategy offered by the Next.js App Router (SSR, ISR, SSG, CSR). The goal is to ship a single abstraction that:
 
@@ -291,6 +294,8 @@ MIT License
 10. [라이선스](#10-라이선스)
 
 ### 1. 라이브러리 개요
+
+> **📚 [전체 문서](https://jobkaehenry.github.io/next-hydrate/ko/)** | [English Docs](https://jobkaehenry.github.io/next-hydrate/)
 
 `@jobkaehenry/next-hydrate`는 Next.js App Router가 제공하는 모든 렌더링 방식(SSR / ISR / SSG / CSR)에서 React Query 캐시를 일관성 있게 유지하기 위한 통합 유틸리티입니다. 핵심 목표는 다음과 같습니다.
 

@@ -86,6 +86,10 @@ export async function getHydrationProps<TData = unknown>({
 
           if (isInfiniteQuery) {
             // Use prefetchInfiniteQuery for infinite queries
+            // Type narrowing - at this point we know these values are defined
+            const getNextPageParam = query.getNextPageParam!;
+            const initialPageParam = query.initialPageParam!;
+
             await qc.prefetchInfiniteQuery({
               queryKey: query.key,
               queryFn: async ({ pageParam }) => {
@@ -93,8 +97,8 @@ export async function getHydrationProps<TData = unknown>({
                 // Note: fetchFn should handle pageParam internally
                 return query.fetchFn();
               },
-              initialPageParam: query.initialPageParam,
-              getNextPageParam: query.getNextPageParam,
+              initialPageParam,
+              getNextPageParam,
               pages: query.pagesToHydrate,
             });
           } else {
